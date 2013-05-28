@@ -15,8 +15,8 @@ public final class Listeners<L extends Listener> implements Iterable<L> {
 
     private Set<L> listeners = new HashSet<L>();
 
-    public <RL extends L> ListenerRegistration<RL> addListener(RL listener) {
-        return new ListenerRegistration<RL>(listeners, listener);
+    public ListenerRegistration addListener(L listener) {
+        return new ListenerRegistration(listeners, listener);
     }
 
     public Set<L> getListeners() {

@@ -9,12 +9,12 @@ import java.util.Set;
  * Time: 18:30
  * To change this template use File | Settings | File Templates.
  */
-public class ListenerRegistration<L extends Listener> {
+public class ListenerRegistration {
 
-    private Set<? super L> listeners;
-    private L listener;
+    private Set<?> listeners;
+    private Listener listener;
 
-    public ListenerRegistration(Set<? super L> listeners, L listener) {
+    public <L extends Listener> ListenerRegistration(Set<? super L> listeners, L listener) {
         this.listeners = listeners;
         this.listener = listener;
         listeners.add(listener);

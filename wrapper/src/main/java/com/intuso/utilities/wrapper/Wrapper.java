@@ -21,7 +21,7 @@ public abstract class Wrapper<WBL extends Wrappable<SWBL>, SWBL extends Wrappabl
 
     private final WBL wrappable;
     private final Map<String, SWR> wrappers;
-    private final Map<String, ListenerRegistration<WrapperListener<? super SWR>>> childListeners;
+    private final Map<String, ListenerRegistration> childListeners;
     private final Listeners<WrapperListener<? super SWR>> listeners = new Listeners<WrapperListener<? super SWR>>();
     private final GeneralListener generalListener = new GeneralListener();
     private final AncestorListener ancestorListener = new AncestorListener();
@@ -30,7 +30,7 @@ public abstract class Wrapper<WBL extends Wrappable<SWBL>, SWBL extends Wrappabl
         assert wrappable != null;
         this.wrappable = wrappable;
         wrappers = new HashMap<String, SWR>();
-        childListeners = new HashMap<String, ListenerRegistration<WrapperListener<? super SWR>>>();
+        childListeners = new HashMap<String, ListenerRegistration>();
     }
 
     protected void unwrapChildren(WrapperFactory<SWBL, ? extends SWR, ? extends E> factory) throws E {
