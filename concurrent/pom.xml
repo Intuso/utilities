@@ -9,7 +9,7 @@
 
     <artifactId>concurrent</artifactId>
     <packaging>jar</packaging>
-    <name>Concurrent</name>
+    <name>Utils Concurrent</name>
     <description>Utilities for concurrent operations</description>
 
     <dependencies>
