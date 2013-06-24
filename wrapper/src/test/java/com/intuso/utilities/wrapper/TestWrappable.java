@@ -7,7 +7,8 @@ import org.junit.Ignore;
  * User: ravnroot
  * Date: 08/07/12
  * Time: 13:32
- * To change this template use File | Settings | File Templates.
+ *
+ * Data object for a test wrappable
  */
 @Ignore
 public class TestWrappable extends Wrappable<TestWrappable> {
@@ -23,6 +24,10 @@ public class TestWrappable extends Wrappable<TestWrappable> {
         this.randomValue = randomValue;
     }
 
+    /**
+     * Get the random value
+     * @return the random value
+     */
     public String getRandomValue() {
         return randomValue;
     }
