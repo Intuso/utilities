@@ -14,30 +14,30 @@ import java.util.Map;
  * Time: 10:57
  * To change this template use File | Settings | File Templates.
  */
-public class Wrappable<SW extends Wrappable> implements Serializable {
+public class Data<SW extends Data> implements Serializable {
     
     private String id;
 
     private Map<String, SW> subWrappables;
 
-    protected Wrappable() {}
+    protected Data() {}
 
-    public Wrappable(String id) {
+    public Data(String id) {
         this(id, new HashMap<String, SW>());
     }
 
-    public Wrappable(String id, SW ... subWrappables) {
+    public Data(String id, SW... subWrappables) {
         this(id, Arrays.asList(subWrappables));
     }
 
-    public Wrappable(String id, List<SW> subWrappables) {
+    public Data(String id, List<SW> subWrappables) {
         this.id = id;
         this.subWrappables = new HashMap<String, SW>(subWrappables.size());
         for(SW subWrappable : subWrappables)
             this.subWrappables.put(subWrappable.getId(), subWrappable);
     }
     
-    public Wrappable(String id, Map<String, SW> subWrappables) {
+    public Data(String id, Map<String, SW> subWrappables) {
         this.id = id;
         this.subWrappables = subWrappables;
     }

@@ -11,7 +11,7 @@ import org.junit.Ignore;
  * Data object for a test wrappable
  */
 @Ignore
-public class TestWrappable extends Wrappable<TestWrappable> {
+public class TestWrappable extends Data<TestWrappable> {
 
     String randomValue;
 

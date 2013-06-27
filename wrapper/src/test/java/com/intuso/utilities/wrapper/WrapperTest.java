@@ -24,9 +24,9 @@ public class WrapperTest {
         TestWrappable wrappable = new TestWrappable("id", "randomValue");
         TestWrapper wrapper = new TestWrapper(wrappable);
         wrapper.unwrapChildren(TestWrapper.FACTORY);
-        assertNotNull(wrapper.getWrappable());
-        assertEquals(wrappable, wrapper.getWrappable());
-        assertEquals("randomValue", wrapper.getWrappable().getRandomValue());
+        assertNotNull(wrapper.getData());
+        assertEquals(wrappable, wrapper.getData());
+        assertEquals("randomValue", wrapper.getData().getRandomValue());
         assertEquals("id", wrapper.getId());
     }
 
@@ -38,18 +38,18 @@ public class WrapperTest {
         TestWrappable wrappable = new TestWrappable("root", wrappableA, wrappableB);
         TestWrapper wrapper = new TestWrapper(wrappable);
         wrapper.unwrapChildren(TestWrapper.FACTORY);
-        assertEquals(wrappable, wrapper.getWrappable());
+        assertEquals(wrappable, wrapper.getData());
         assertEquals(2, wrapper.getWrappers().size());
         for(Wrapper w : wrapper.getWrappers())
             w.unwrapChildren(TestWrapper.FACTORY);
         assertNotNull(wrapper.getWrapper("A"));
-        assertEquals(wrappableA, wrapper.getWrapper("A").getWrappable());
+        assertEquals(wrappableA, wrapper.getWrapper("A").getData());
         assertEquals(1, wrapper.getWrapper("A").getWrappers().size());
         assertNotNull(wrapper.getWrapper("B"));
-        assertEquals(wrappableB, wrapper.getWrapper("B").getWrappable());
+        assertEquals(wrappableB, wrapper.getWrapper("B").getData());
         assertEquals(0, wrapper.getWrapper("B").getWrappers().size());
         assertNotNull(wrapper.getWrapper("A").getWrapper("AA"));
-        assertEquals(wrappableAA, wrapper.getWrapper("A").getWrapper("AA").getWrappable());
+        assertEquals(wrappableAA, wrapper.getWrapper("A").getWrapper("AA").getData());
         assertEquals(0, wrapper.getWrapper("A").getWrapper("AA").getWrappers().size());
     }
 
@@ -70,16 +70,16 @@ public class WrapperTest {
         wrapperA.addWrapper(wrapperAA);
         wrapper.addWrapper(wrapperA);
         wrapper.addWrapper(wrapperB);
-        assertEquals(wrappable, wrapper.getWrappable());
+        assertEquals(wrappable, wrapper.getData());
         assertEquals(2, wrapper.getWrappers().size());
         assertNotNull(wrapper.getWrapper("A"));
-        assertEquals(wrappableA, wrapper.getWrapper("A").getWrappable());
+        assertEquals(wrappableA, wrapper.getWrapper("A").getData());
         assertEquals(1, wrapper.getWrapper("A").getWrappers().size());
         assertNotNull(wrapper.getWrapper("B"));
-        assertEquals(wrappableB, wrapper.getWrapper("B").getWrappable());
+        assertEquals(wrappableB, wrapper.getWrapper("B").getData());
         assertEquals(0, wrapper.getWrapper("B").getWrappers().size());
         assertNotNull(wrapper.getWrapper("A").getWrapper("AA"));
-        assertEquals(wrappableAA, wrapper.getWrapper("A").getWrapper("AA").getWrappable());
+        assertEquals(wrappableAA, wrapper.getWrapper("A").getWrapper("AA").getData());
         assertEquals(0, wrapper.getWrapper("A").getWrapper("AA").getWrappers().size());
     }
 
@@ -91,18 +91,18 @@ public class WrapperTest {
         TestWrappable wrappable = new TestWrappable("root", wrappableA, wrappableB);
         TestWrapper wrapper = new TestWrapper(wrappable);
         wrapper.unwrapChildren(TestWrapper.FACTORY);
-        assertEquals(wrappable, wrapper.getWrappable());
+        assertEquals(wrappable, wrapper.getData());
         assertEquals(2, wrapper.getWrappers().size());
         for(Wrapper w : wrapper.getWrappers())
             w.unwrapChildren(TestWrapper.FACTORY);
         assertNotNull(wrapper.getWrapper("A"));
-        assertEquals(wrappableA, wrapper.getWrapper("A").getWrappable());
+        assertEquals(wrappableA, wrapper.getWrapper("A").getData());
         assertEquals(1, wrapper.getWrapper("A").getWrappers().size());
         assertNotNull(wrapper.getWrapper("B"));
-        assertEquals(wrappableB, wrapper.getWrapper("B").getWrappable());
+        assertEquals(wrappableB, wrapper.getWrapper("B").getData());
         assertEquals(0, wrapper.getWrapper("B").getWrappers().size());
         assertNotNull(wrapper.getWrapper("A").getWrapper("AA"));
-        assertEquals(wrappableAA, wrapper.getWrapper("A").getWrapper("AA").getWrappable());
+        assertEquals(wrappableAA, wrapper.getWrapper("A").getWrapper("AA").getData());
         assertEquals(0, wrapper.getWrapper("A").getWrapper("AA").getWrappers().size());
         wrapper.getWrapper("A").removeWrapper("AA");
         assertEquals(0, wrapper.getWrapper("A").getWrappers().size());
