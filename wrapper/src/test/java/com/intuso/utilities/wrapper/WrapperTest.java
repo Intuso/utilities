@@ -15,13 +15,13 @@ public class WrapperTest {
 
     @Test
     public void testWrappable() {
-        TestWrappable wrappable = new TestWrappable("id", "randomValue");
+        TestData wrappable = new TestData("id", "randomValue");
         assertEquals("randomValue", wrappable.getRandomValue());
     }
 
     @Test
     public void testWrapWrappable() throws Exception {
-        TestWrappable wrappable = new TestWrappable("id", "randomValue");
+        TestData wrappable = new TestData("id", "randomValue");
         TestWrapper wrapper = new TestWrapper(wrappable);
         wrapper.unwrapChildren(TestWrapper.FACTORY);
         assertNotNull(wrapper.getData());
@@ -32,10 +32,10 @@ public class WrapperTest {
 
     @Test
     public void testWrapWrappableTree() throws Exception {
-        TestWrappable wrappableAA = new TestWrappable("AA");
-        TestWrappable wrappableA = new TestWrappable("A", wrappableAA);
-        TestWrappable wrappableB = new TestWrappable("B");
-        TestWrappable wrappable = new TestWrappable("root", wrappableA, wrappableB);
+        TestData wrappableAA = new TestData("AA");
+        TestData wrappableA = new TestData("A", wrappableAA);
+        TestData wrappableB = new TestData("B");
+        TestData wrappable = new TestData("root", wrappableA, wrappableB);
         TestWrapper wrapper = new TestWrapper(wrappable);
         wrapper.unwrapChildren(TestWrapper.FACTORY);
         assertEquals(wrappable, wrapper.getData());
@@ -55,10 +55,10 @@ public class WrapperTest {
 
     @Test
     public void testAddWrappers() throws Exception {
-        TestWrappable wrappable = new TestWrappable("root");
-        TestWrappable wrappableA = new TestWrappable("A");
-        TestWrappable wrappableAA = new TestWrappable("AA");
-        TestWrappable wrappableB = new TestWrappable("B");
+        TestData wrappable = new TestData("root");
+        TestData wrappableA = new TestData("A");
+        TestData wrappableAA = new TestData("AA");
+        TestData wrappableB = new TestData("B");
         TestWrapper wrapper = new TestWrapper(wrappable);
         wrapper.unwrapChildren(TestWrapper.FACTORY);
         TestWrapper wrapperA = new TestWrapper(wrappableA);
@@ -85,10 +85,10 @@ public class WrapperTest {
 
     @Test
     public void testRemoveWrapper() throws Exception {
-        TestWrappable wrappableAA = new TestWrappable("AA");
-        TestWrappable wrappableA = new TestWrappable("A", wrappableAA);
-        TestWrappable wrappableB = new TestWrappable("B");
-        TestWrappable wrappable = new TestWrappable("root", wrappableA, wrappableB);
+        TestData wrappableAA = new TestData("AA");
+        TestData wrappableA = new TestData("A", wrappableAA);
+        TestData wrappableB = new TestData("B");
+        TestData wrappable = new TestData("root", wrappableA, wrappableB);
         TestWrapper wrapper = new TestWrapper(wrappable);
         wrapper.unwrapChildren(TestWrapper.FACTORY);
         assertEquals(wrappable, wrapper.getData());

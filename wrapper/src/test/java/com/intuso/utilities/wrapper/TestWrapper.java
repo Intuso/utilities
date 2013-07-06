@@ -10,17 +10,17 @@ import org.junit.Ignore;
  * To change this template use File | Settings | File Templates.
  */
 @Ignore
-public class TestWrapper extends Wrapper<TestWrappable, TestWrappable, TestWrapper, Exception> {
+public class TestWrapper extends Wrapper<TestData, TestData, TestWrapper, Exception> {
 
-    public final static WrapperFactory<TestWrappable, TestWrapper, Exception> FACTORY
-            = new WrapperFactory<TestWrappable, TestWrapper, Exception>() {
+    public final static WrapperFactory<TestData, TestWrapper, Exception> FACTORY
+            = new WrapperFactory<TestData, TestWrapper, Exception>() {
         @Override
-        public TestWrapper create(TestWrappable wrappable) throws Exception {
+        public TestWrapper create(TestData wrappable) throws Exception {
             return new TestWrapper(wrappable);
         }
     };
 
-    public TestWrapper(TestWrappable wrappable) {
+    public TestWrapper(TestData wrappable) {
         super(wrappable);
     }
 }

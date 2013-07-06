@@ -6,6 +6,7 @@ import com.intuso.utilities.listener.Listeners;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * Created by IntelliJ IDEA.
@@ -29,7 +30,7 @@ public abstract class Wrapper<WBL extends Data<SWBL>, SWBL extends Data<?>,
     public Wrapper(WBL data) {
         assert data != null;
         this.data = data;
-        wrappers = new HashMap<String, SWR>();
+        wrappers = new TreeMap<String, SWR>();
         childListeners = new HashMap<String, ListenerRegistration>();
     }
 

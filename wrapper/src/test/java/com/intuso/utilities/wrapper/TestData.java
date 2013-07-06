@@ -11,15 +11,15 @@ import org.junit.Ignore;
  * Data object for a test wrappable
  */
 @Ignore
-public class TestWrappable extends Data<TestWrappable> {
+public class TestData extends Data<TestData> {
 
     String randomValue;
 
-    public TestWrappable(String name, TestWrappable ... subWrappables) {
+    public TestData(String name, TestData... subWrappables) {
         this(name, "randomValue", subWrappables);
     }
 
-    public TestWrappable(String name, String randomValue, TestWrappable ... subWrappables) {
+    public TestData(String name, String randomValue, TestData... subWrappables) {
         super(name, subWrappables);
         this.randomValue = randomValue;
     }
