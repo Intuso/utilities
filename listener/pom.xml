@@ -9,7 +9,7 @@
 
     <artifactId>listener</artifactId>
     <packaging>jar</packaging>
-    <name>Utils Listener</name>
+    <name>Utilities Listener</name>
     <description>Utility module for handling listeners and their registrations</description>
 
     <dependencies>

@@ -23,7 +23,7 @@
         <module>io</module>
         <module>listener</module>
         <module>log</module>
-        <module>wrapper</module>
+        <module>object</module>
     </modules>
 
     <dependencies>

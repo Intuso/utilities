@@ -9,7 +9,7 @@
 
     <artifactId>io</artifactId>
     <packaging>jar</packaging>
-    <name>Utils IO</name>
+    <name>Utilities IO</name>
     <description>IO Utilities</description>
 
 </project>

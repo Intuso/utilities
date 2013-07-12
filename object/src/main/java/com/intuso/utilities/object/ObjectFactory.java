@@ -1,4 +1,4 @@
-package com.intuso.utilities.wrapper;
+package com.intuso.utilities.object;
 
 /**
  * Created with IntelliJ IDEA.
@@ -7,7 +7,7 @@ package com.intuso.utilities.wrapper;
  * Time: 22:17
  * To change this template use File | Settings | File Templates.
  */
-public interface WrapperFactory<WBL extends Data<?>, WR extends Wrapper<? extends WBL, ?, ?, ?>,
+public interface ObjectFactory<DATA extends Data<?>, O extends Object<? extends DATA, ?, ?, ?>,
         E extends Exception> {
-    public WR create(WBL wrappable) throws E;
+    public O create(DATA data) throws E;
 }

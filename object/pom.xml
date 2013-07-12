@@ -9,7 +9,7 @@
 
     <artifactId>wrapper</artifactId>
     <packaging>jar</packaging>
-    <name>Utils Wrapper</name>
+    <name>Utilities Wrapper</name>
     <description>Base library for a hierarchy of objects</description>
 
     <dependencies>

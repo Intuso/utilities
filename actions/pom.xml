@@ -9,7 +9,7 @@
 
     <artifactId>actions</artifactId>
     <packaging>jar</packaging>
-    <name>Utils Actions</name>
+    <name>Utilities Actions</name>
     <description>Utility for performing actions, possibly remotely</description>
 
 </project>

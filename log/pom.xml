@@ -9,7 +9,7 @@
 
     <artifactId>log</artifactId>
     <packaging>jar</packaging>
-    <name>Utils Log</name>
+    <name>Utilities Log</name>
     <description>Framework for logging</description>
 
 </project>
