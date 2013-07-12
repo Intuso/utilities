@@ -15,8 +15,8 @@ import java.util.TreeMap;
  * Time: 09:00
  * To change this template use File | Settings | File Templates.
  */
-public abstract class Object<DATA extends Data<CHILD_DATA>, CHILD_DATA extends Data<?>,
-            CHILD_OBJECT extends Object<? extends CHILD_DATA, ?, ?, E>, E extends Exception> {
+public abstract class BaseObject<DATA extends Data<CHILD_DATA>, CHILD_DATA extends Data<?>,
+            CHILD_OBJECT extends BaseObject<? extends CHILD_DATA, ?, ?, E>, E extends Exception> {
 
     public final static String PATH_SEPARATOR = "/";
 
@@ -27,7 +27,7 @@ public abstract class Object<DATA extends Data<CHILD_DATA>, CHILD_DATA extends D
     private final GeneralListener generalListener = new GeneralListener();
     private final AncestorListener ancestorListener = new AncestorListener();
 
-    public Object(DATA data) {
+    public BaseObject(DATA data) {
         assert data != null;
         this.data = data;
         children = new TreeMap<String, CHILD_OBJECT>();
@@ -102,40 +102,40 @@ public abstract class Object<DATA extends Data<CHILD_DATA>, CHILD_DATA extends D
         }
 
         @Override
-        public void ancestorObjectAdded(String ancestorPath, Object<?, ?, ?, ?> ancestor) {
+        public void ancestorObjectAdded(String ancestorPath, BaseObject<?, ?, ?, ?> ancestor) {
             String newAncestorPath = getId() + PATH_SEPARATOR + ancestorPath;
             for(ObjectListener<? super CHILD_OBJECT> listener : listeners)
                 listener.ancestorObjectAdded(newAncestorPath, ancestor);
         }
 
         @Override
-        public void ancestorObjectRemoved(String ancestorPath, Object<?, ?, ?, ?> ancestor) {
+        public void ancestorObjectRemoved(String ancestorPath, BaseObject<?, ?, ?, ?> ancestor) {
             String newAncestorPath = getId() + PATH_SEPARATOR + ancestorPath;
             for(ObjectListener<? super CHILD_OBJECT> listener : listeners)
                 listener.ancestorObjectRemoved(newAncestorPath, ancestor);
         }
     }
 
-    private class AncestorListener implements ObjectListener<Object<?, ?, ?, ?>> {
+    private class AncestorListener implements ObjectListener<BaseObject<?, ?, ?, ?>> {
         @Override
-        public void childObjectAdded(String childId, Object<?, ?, ?, ?> child) {
+        public void childObjectAdded(String childId, BaseObject<?, ?, ?, ?> child) {
             // do nothing for child added
         }
 
         @Override
-        public void childObjectRemoved(String childId, Object<?, ?, ?, ?> child) {
+        public void childObjectRemoved(String childId, BaseObject<?, ?, ?, ?> child) {
             // do nothing for child removed
         }
 
         @Override
-        public void ancestorObjectAdded(String ancestorPath, Object<?, ?, ?, ?> ancestor) {
+        public void ancestorObjectAdded(String ancestorPath, BaseObject<?, ?, ?, ?> ancestor) {
             String newAncestorPath = getId() + PATH_SEPARATOR + ancestorPath;
             for(ObjectListener<? super CHILD_OBJECT> listener : listeners)
                 listener.ancestorObjectAdded(newAncestorPath, ancestor);
         }
 
         @Override
-        public void ancestorObjectRemoved(String ancestorPath, Object<?, ?, ?, ?> ancestor) {
+        public void ancestorObjectRemoved(String ancestorPath, BaseObject<?, ?, ?, ?> ancestor) {
             String newAncestorPath = getId() + PATH_SEPARATOR + ancestorPath;
             for(ObjectListener<? super CHILD_OBJECT> listener : listeners)
                 listener.ancestorObjectRemoved(newAncestorPath, ancestor);

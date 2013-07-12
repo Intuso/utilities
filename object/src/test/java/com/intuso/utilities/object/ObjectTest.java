@@ -40,7 +40,7 @@ public class ObjectTest {
         object.createChildren(TestObject.FACTORY);
         assertEquals(data, object.getData());
         assertEquals(2, object.getChildren().size());
-        for(Object w : object.getChildren())
+        for(BaseObject w : object.getChildren())
             w.createChildren(TestObject.FACTORY);
         assertNotNull(object.getChild("A"));
         assertEquals(dataA, object.getChild("A").getData());
@@ -93,7 +93,7 @@ public class ObjectTest {
         object.createChildren(TestObject.FACTORY);
         assertEquals(data, object.getData());
         assertEquals(2, object.getChildren().size());
-        for(Object child : object.getChildren())
+        for(BaseObject child : object.getChildren())
             child.createChildren(TestObject.FACTORY);
         assertNotNull(object.getChild("A"));
         assertEquals(dataA, object.getChild("A").getData());

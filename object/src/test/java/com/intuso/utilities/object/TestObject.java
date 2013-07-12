@@ -10,7 +10,7 @@ import org.junit.Ignore;
  * To change this template use File | Settings | File Templates.
  */
 @Ignore
-public class TestObject extends Object<TestData, TestData, TestObject, Exception> {
+public class TestObject extends BaseObject<TestData, TestData, TestObject, Exception> {
 
     public final static ObjectFactory<TestData, TestObject, Exception> FACTORY
             = new ObjectFactory<TestData, TestObject, Exception>() {

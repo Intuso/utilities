@@ -12,6 +12,6 @@ import com.intuso.utilities.listener.Listener;
 public interface ObjectListener<O> extends Listener {
     void childObjectAdded(String childId, O child);
     void childObjectRemoved(String childId, O child);
-    void ancestorObjectAdded(String ancestorPath, Object<?, ?, ?, ?> ancestor);
-    void ancestorObjectRemoved(String ancestorPath, Object<?, ?, ?, ?> ancestor);
+    void ancestorObjectAdded(String ancestorPath, BaseObject<?, ?, ?, ?> ancestor);
+    void ancestorObjectRemoved(String ancestorPath, BaseObject<?, ?, ?, ?> ancestor);
 }
