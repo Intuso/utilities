@@ -14,51 +14,51 @@ import java.util.Map;
  * Time: 10:57
  * To change this template use File | Settings | File Templates.
  */
-public class Data<SW extends Data> implements Serializable {
+public class Data<CDATA extends Data> implements Serializable {
     
     private String id;
 
-    private Map<String, SW> subWrappables;
+    private Map<String, CDATA> childData;
 
     protected Data() {}
 
     public Data(String id) {
-        this(id, new HashMap<String, SW>());
+        this(id, new HashMap<String, CDATA>());
     }
 
-    public Data(String id, SW... subWrappables) {
-        this(id, Arrays.asList(subWrappables));
+    public Data(String id, CDATA... childData) {
+        this(id, Arrays.asList(childData));
     }
 
-    public Data(String id, List<SW> subWrappables) {
+    public Data(String id, List<CDATA> childData) {
         this.id = id;
-        this.subWrappables = new HashMap<String, SW>(subWrappables.size());
-        for(SW subWrappable : subWrappables)
-            this.subWrappables.put(subWrappable.getId(), subWrappable);
+        this.childData = new HashMap<String, CDATA>(childData.size());
+        for(CDATA sd : childData)
+            this.childData.put(sd.getId(), sd);
     }
     
-    public Data(String id, Map<String, SW> subWrappables) {
+    public Data(String id, Map<String, CDATA> childData) {
         this.id = id;
-        this.subWrappables = subWrappables;
+        this.childData = childData;
     }
 
     public final String getId() {
         return id;
     }
 
-    public final Map<String, SW> getSubWrappables() {
-        return Collections.unmodifiableMap(subWrappables);
+    public final Map<String, CDATA> getChildData() {
+        return Collections.unmodifiableMap(childData);
     }
 
-    public final SW getSubWrappable(String id) {
-        return subWrappables.get(id);
+    public final CDATA getChildData(String id) {
+        return childData.get(id);
     }
 
-    public final void addWrappable(SW subWrappable) {
-        subWrappables.put(subWrappable.getId(), subWrappable);
+    public final void addChildData(CDATA childData) {
+        this.childData.put(childData.getId(), childData);
     }
 
-    public final SW removeWrappable(String id) {
-        return subWrappables.remove(id);
+    public final CDATA removeChildData(String id) {
+        return childData.remove(id);
     }
 }

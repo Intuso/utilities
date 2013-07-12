@@ -35,7 +35,7 @@ public abstract class Wrapper<WBL extends Data<SWBL>, SWBL extends Data<?>,
     }
 
     protected void unwrapChildren(WrapperFactory<SWBL, ? extends SWR, ? extends E> factory) throws E {
-        for(SWBL subWrappable : data.getSubWrappables().values())
+        for(SWBL subWrappable : data.getChildData().values())
             if(wrappers.get(subWrappable.getId()) == null) {
                 SWR subWrapper = factory.create(subWrappable);
                 wrappers.put(subWrappable.getId(), subWrapper);
@@ -58,10 +58,10 @@ public abstract class Wrapper<WBL extends Data<SWBL>, SWBL extends Data<?>,
 
     protected void addWrapper(SWR wrapper) {
         if(wrapper != null) {
-            if(wrappers.get(wrapper.getId()) != null || data.getSubWrappable(wrapper.getId()) != null)
+            if(wrappers.get(wrapper.getId()) != null || data.getChildData(wrapper.getId()) != null)
                 throw new RuntimeException("A wrapper/wrappable with id=\"" + wrapper.getId() + "\" already exists. You must remove the existing one before adding one of the same id");
             wrappers.put(wrapper.getId(), wrapper);
-            data.addWrappable(wrapper.getData());
+            data.addChildData(wrapper.getData());
             childListeners.put(wrapper.getId(), wrapper.addWrapperListener(ancestorListener));
             generalListener.childWrapperAdded(wrapper.getId(), wrapper);
         }
@@ -71,7 +71,7 @@ public abstract class Wrapper<WBL extends Data<SWBL>, SWBL extends Data<?>,
         SWR wrapper = getWrapper(id);
         if(wrapper != null) {
             wrappers.remove(id);
-            data.removeWrappable(id);
+            data.removeChildData(id);
             childListeners.remove(id).removeListener();
             generalListener.childWrapperRemoved(wrapper.getId(), wrapper);
         }
