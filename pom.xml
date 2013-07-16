@@ -68,11 +68,11 @@
     </build>
 
     <scm>
-        <connection>scm:svn:https://intuso.com/svn/utilities/trunk/</connection>
+        <connection>scm:svn:svn+ssh://tom@intuso.com/svn/intuso.com/utilities/trunk</connection>
         <developerConnection>scm:svn:https://intuso.com/svn/utilities/trunk/</developerConnection>
     </scm>
 
-    <distributionManagement>
+    <!--distributionManagement>
         <repository>
             <id>central</id>
             <name>intuso.com-releases</name>
@@ -83,5 +83,5 @@
             <name>intuso.com-snapshots</name>
             <url>https://intuso.com/artifactory/libs-snapshot-local/</url>
         </snapshotRepository>
-    </distributionManagement>
+    </distributionManagement-->
 </project>
