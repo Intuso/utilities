@@ -4,7 +4,7 @@
 
     <groupId>com.intuso.utilities</groupId>
     <artifactId>utilities</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0-RC1</version>
     <packaging>pom</packaging>
     <name>Utilities</name>
     <description>Parent for Intuso utility projects</description>
@@ -68,8 +68,8 @@
     </build>
 
     <scm>
-        <connection>scm:svn:svn+ssh://tom@intuso.com/svn/intuso.com/utilities/trunk</connection>
-        <developerConnection>scm:svn:https://intuso.com/svn/utilities/trunk/</developerConnection>
+        <connection>scm:svn:svn+ssh://tom@intuso.com/svn/intuso.com/utilities/tags/utilities-1.0.0-RC1</connection>
+        <developerConnection>scm:svn:https://intuso.com/svn/utilities/tags/utilities-1.0.0-RC1</developerConnection>
     </scm>
 
     <!--distributionManagement>
