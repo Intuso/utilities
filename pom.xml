@@ -69,7 +69,7 @@
 
     <scm>
         <connection>scm:svn:svn+ssh://tom@intuso.com/svn/intuso.com/utilities/trunk</connection>
-        <developerConnection>scm:svn:https://intuso.com/svn/utilities/trunk/</developerConnection>
+        <developerConnection>scm:svn:svn+ssh://tom@intuso.com/svn/intuso.com/utilities/trunk</developerConnection>
     </scm>
 
     <!--distributionManagement>
