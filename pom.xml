@@ -68,8 +68,8 @@
     </build>
 
     <scm>
-        <connection>scm:svn:svn+ssh://tom@intuso.com/svn/intuso.com/utilities/trunk</connection>
-        <developerConnection>scm:svn:svn+ssh://tom@intuso.com/svn/intuso.com/utilities/trunk</developerConnection>
+        <connection>scm:svn:svn+ssh://tom@dev.intuso.com/svn/intuso.com/utilities/trunk</connection>
+        <developerConnection>scm:svn:svn+ssh://tom@dev.intuso.com/svn/intuso.com/utilities/trunk</developerConnection>
     </scm>
 
     <!--distributionManagement>
