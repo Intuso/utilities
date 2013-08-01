@@ -76,12 +76,12 @@
         <repository>
             <id>central</id>
             <name>intuso-maven</name>
-            <url>https://dev.intuso.com/maven/libs-releases-local/</url>
+            <url>https://dev.intuso.com/maven/content/repositories/releases/</url>
         </repository>
         <snapshotRepository>
             <id>snapshots</id>
             <name>intuso.com-snapshots</name>
-            <url>https://dev.intuso.com/maven/libs-snapshot-local/</url>
+            <url>https://dev.intuso.com/maven/content/repositories/snapshots/</url>
         </snapshotRepository>
     </distributionManagement>
 </project>
