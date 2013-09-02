@@ -74,8 +74,8 @@
 
     <distributionManagement>
         <repository>
-            <id>intuso-maven-releases</id>
-            <name>intuso-maven</name>
+            <id>intuso-maven</id>
+            <name>intuso-maven-releases</name>
             <url>http://dev.intuso.com/maven/content/repositories/releases/</url>
         </repository>
         <snapshotRepository>
