@@ -1,8 +1,6 @@
 package com.intuso.utilities.listener;
 
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -13,21 +11,21 @@ import java.util.Set;
  */
 public final class Listeners<L extends Listener> implements Iterable<L> {
 
-    private Set<L> listeners = new HashSet<L>();
+    private final List<L> listeners;
+
+    public Listeners() {
+        this(new ArrayList<L>());
+    }
+
+    public Listeners(List<L> listeners) {
+        this.listeners = listeners;
+    }
 
     public ListenerRegistration addListener(L listener) {
         return new ListenerRegistration(listeners, listener);
     }
 
-    public Set<L> getListeners() {
-        // return as a new set so that listeners can remove themselves as they're called without causing a
-        // concurrent modification exception
-        return new HashSet<L>(listeners);
-    }
-
-    @Override
-
     public Iterator<L> iterator() {
-        return getListeners().iterator();
+        return listeners.iterator();
     }
 }

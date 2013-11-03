@@ -1,6 +1,6 @@
 package com.intuso.utilities.listener;
 
-import java.util.Set;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -11,10 +11,10 @@ import java.util.Set;
  */
 public class ListenerRegistration {
 
-    private Set<?> listeners;
+    private List<?> listeners;
     private Listener listener;
 
-    public <L extends Listener> ListenerRegistration(Set<? super L> listeners, L listener) {
+    public <L extends Listener> ListenerRegistration(List<? super L> listeners, L listener) {
         this.listeners = listeners;
         this.listener = listener;
         listeners.add(listener);
