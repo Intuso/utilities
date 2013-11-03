@@ -1,5 +1,6 @@
 package com.intuso.utilities.listener;
 
+import com.google.common.collect.Lists;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -21,30 +22,30 @@ public class ListenerRegistrationTest {
     public void testAddListener() {
         ListenerRegistration lr = listeners.addListener(listener);
         assertNotNull(lr);
-        assertEquals(1, listeners.getListeners().size());
+        assertEquals(1, Lists.newArrayList(listeners).size());
     }
 
     @Test
     public void testRemoveListener() {
         ListenerRegistration lr = listeners.addListener(listener);
         assertNotNull(lr);
-        assertEquals(1, listeners.getListeners().size());
+        assertEquals(1, Lists.newArrayList(listeners).size());
         lr.removeListener();
-        assertEquals(0, listeners.getListeners().size());
+        assertEquals(0, Lists.newArrayList(listeners).size());
     }
 
     @Test
     public void testRemoveListenerMultipleTimes() {
         ListenerRegistration lr = listeners.addListener(listener);
         assertNotNull(lr);
-        assertEquals(1, listeners.getListeners().size());
+        assertEquals(1, Lists.newArrayList(listeners).size());
         lr.removeListener();
-        assertEquals(0, listeners.getListeners().size());
-        lr.removeListener();
-        lr.removeListener();
+        assertEquals(0, Lists.newArrayList(listeners).size());
         lr.removeListener();
         lr.removeListener();
-        assertEquals(0, listeners.getListeners().size());
+        lr.removeListener();
+        lr.removeListener();
+        assertEquals(0, Lists.newArrayList(listeners).size());
     }
 
     @Test
@@ -53,7 +54,7 @@ public class ListenerRegistrationTest {
         ListenerRegistration lr2 = listeners.addListener(listener);
         assertNotNull(lr1);
         assertNotNull(lr2);
-        assertEquals(1, listeners.getListeners().size());
+        assertEquals(2, Lists.newArrayList(listeners).size());
     }
 
     @Test
@@ -62,11 +63,11 @@ public class ListenerRegistrationTest {
         ListenerRegistration lr2 = listeners.addListener(listener);
         assertNotNull(lr1);
         assertNotNull(lr2);
-        assertEquals(1, listeners.getListeners().size());
+        assertEquals(2, Lists.newArrayList(listeners).size());
         lr1.removeListener();
-        assertEquals(0, listeners.getListeners().size());
+        assertEquals(1, Lists.newArrayList(listeners).size());
         lr2.removeListener();
-        assertEquals(0, listeners.getListeners().size());
+        assertEquals(0, Lists.newArrayList(listeners).size());
     }
 
     private class TestListener implements Listener {}

@@ -5,7 +5,9 @@ import org.junit.Ignore;
 @Ignore
 public class TestData extends Data<TestData> {
 
-    String randomValue;
+    private static final long serialVersionUID = -1L;
+
+    private String randomValue;
 
     public TestData(String name, TestData... childData) {
         this(name, "randomValue", childData);

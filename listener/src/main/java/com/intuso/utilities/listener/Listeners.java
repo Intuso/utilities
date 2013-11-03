@@ -11,20 +11,21 @@ import java.util.*;
  */
 public final class Listeners<L extends Listener> implements Iterable<L> {
 
-    private List<L> listeners = new ArrayList<L>();
-    private List<L> unmodifiableListeners = Collections.unmodifiableList(listeners);
+    private final List<L> listeners;
+
+    public Listeners() {
+        this(new ArrayList<L>());
+    }
+
+    public Listeners(List<L> listeners) {
+        this.listeners = listeners;
+    }
 
     public ListenerRegistration addListener(L listener) {
         return new ListenerRegistration(listeners, listener);
     }
 
-    public List<L> getListeners() {
-        return unmodifiableListeners;
-    }
-
-    @Override
-
     public Iterator<L> iterator() {
-        return getListeners().iterator();
+        return listeners.iterator();
     }
 }
