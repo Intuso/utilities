@@ -6,7 +6,9 @@ package com.intuso.utilities.log;
  *
  */
 public abstract class LogWriter {
-	
+
+    protected final static String CAUSED_BY_MSG = "Caused by: ";
+
 	/**
 	 * The level to filter messages at
 	 */
@@ -33,9 +35,9 @@ public abstract class LogWriter {
 	 * @param level the level of the log message
 	 * @param message the message to write
 	 */
-	public final void write(LogLevel level, String message) {
+	public final void write(LogLevel level, String message, Throwable t) {
 		if(this.level.shouldLog(level))
-			_write(level, message);
+			_write(level, message, t);
 	}
 	
 	/**
@@ -43,5 +45,5 @@ public abstract class LogWriter {
 	 * @param level the level of the message
 	 * @param message the message
 	 */
-	protected abstract void _write(LogLevel level, String message);
+	protected abstract void _write(LogLevel level, String message, Throwable t);
 }

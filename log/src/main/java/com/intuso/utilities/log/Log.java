@@ -2,7 +2,6 @@ package com.intuso.utilities.log;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -76,26 +75,14 @@ public class Log {
 	 * @param message the message to log
 	 */
     @SuppressWarnings("deprecation")
-	private synchronized final void write(LogLevel level, String message) {
+	private synchronized final void write(LogLevel level, String message, Throwable t) {
 		
 		// check if anything will log this message. If not, return
 		if(level.isLowerThan(minLevel))
 			return;
 
-        /*Date now = new Date();
-		String to_write = now.getDate() + // yyyy/MM/dd HH:mm:ss.SSS
-                "/" + (now.getMonth() + 1) +
-                "/" + (now.getYear() + 1900) +
-                " " + now.getHours() +
-                ":" + now.getMinutes() +
-                ":" + now.getSeconds() +
-                "." + (now.getTime() % 1000) +*/
-        String to_write = new Date().toString() +
-            ": " + name +
-			": " + level +
-			": " + message;
 		for(LogWriter writer : writers)
-			writer.write(level, to_write);
+			writer.write(level, message, t);
 	}
 	
 	/**
@@ -103,65 +90,83 @@ public class Log {
 	 * @param message the message to log
 	 */
 	public final void f(String message) {
-		write(LogLevel.FATAL, message);
+		write(LogLevel.FATAL, message, null);
 	}
+
+    /**
+     * Log a fatal message
+     * @param message the message to log
+     * @param t the throwable to log with the message
+     */
+    public final void f(String message, Throwable t) {
+        write(LogLevel.FATAL, message, t);
+    }
 	
 	/**
 	 * Log an error message
 	 * @param message the message to log
 	 */
 	public final void e(String message) {
-		write(LogLevel.ERROR, message);
+		write(LogLevel.ERROR, message, null);
 	}
+
+    /**
+     * Log an error message
+     * @param message the message to log
+     * @param t the throwable to log with the message
+     */
+    public final void e(String message, Throwable t) {
+        write(LogLevel.ERROR, message, t);
+    }
 	
 	/**
 	 * Log a warning message
 	 * @param message the message to log
 	 */
 	public final void w(String message) {
-		write(LogLevel.WARN, message);
+		write(LogLevel.WARN, message, null);
 	}
+
+    /**
+     * Log a warning message
+     * @param message the message to log
+     * @param t the throwable to log with the message
+     */
+    public final void w(String message, Throwable t) {
+        write(LogLevel.WARN, message, t);
+    }
 	
 	/**
 	 * Log a debug message
 	 * @param message the message to log
 	 */
 	public final void d(String message) {
-		write(LogLevel.DEBUG, message);
+		write(LogLevel.DEBUG, message, null);
 	}
+
+    /**
+     * Log a debug message
+     * @param message the message to log
+     * @param t the throwable to log with the message
+     */
+    public final void d(String message, Throwable t) {
+        write(LogLevel.DEBUG, message, t);
+    }
+
+    /**
+     * Log an info message
+     * @param message the message to log
+     */
+    public final void i(String message) {
+        write(LogLevel.INFO, message, null);
+    }
 	
 	/**
 	 * Log an info message
 	 * @param message the message to log
+     * @param t the throwable to log with the message
 	 */
-	public final void i(String message) {
-		write(LogLevel.INFO, message);
-	}
-	
-	/**
-	 * Print the stacktrace of an exception to the log. NB the stack trace is logged at debug level
-	 * so writers must be filtered at debug for the stack trace to show
-	 * @param t the exception to log
-	 */
-	public final void st(Throwable t) {
-        String space = " ";
-        String newLine = "\n";
-        boolean first = true;
-        StringBuffer sb = new StringBuffer();
-        while(t != null) {
-            sb.append((first ? "" : "Caused by: ") + t.getMessage()).append(newLine);
-            StackTraceElement[] st = t.getStackTrace();
-            for(int i = 0; i < st.length; i++) {
-                sb.append("\t")
-                        .append(st[i].getClassName())
-                        .append(space)
-                        .append(st[i].getMethodName())
-                        .append(space)
-                        .append(st[i].getLineNumber())
-                        .append(newLine);
-            }
-            t = t.getCause();
-        }
-		d(sb.toString());
+	public final void i(String message, Throwable t) {
+		write(LogLevel.INFO, message, t);
 	}
 }

@@ -3,8 +3,8 @@ package com.intuso.utilities.log.writer;
 import com.intuso.utilities.log.LogLevel;
 import com.intuso.utilities.log.LogWriter;
 
-import java.io.BufferedWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 /**
  * Log writer that writes message to a file
@@ -14,14 +14,9 @@ import java.io.IOException;
 public class FileWriter extends LogWriter {
 	
 	/**
-	 * The file to write to
-	 */
-	private String fileName;
-	
-	/**
 	 * Wrapper around the file's output stream
 	 */
-	private BufferedWriter out;
+	private PrintWriter out;
 	
 	/**
 	 * Create a new log file write
@@ -31,17 +26,16 @@ public class FileWriter extends LogWriter {
 	 */
 	public FileWriter(LogLevel level, String file_name) throws IOException {
 		super(level);
-		fileName = file_name;
-		out = new BufferedWriter(new java.io.FileWriter(file_name));
+		out = new PrintWriter(new java.io.FileWriter(file_name));
 	}
 
 	@Override
-	public void _write(LogLevel level, String message) {
-		try {
-			out.write(message + "\n");
-			out.flush();
-		} catch(IOException e) {
-			System.err.println("Unable to write message to log file \"" + fileName + "\"");
-		}
+	public void _write(LogLevel level, String message, Throwable t) {
+        out.write(message + "\n");
+        if(t != null) {
+            System.out.print(CAUSED_BY_MSG);
+            t.printStackTrace(out);
+        }
+        out.flush();
 	}
 }
