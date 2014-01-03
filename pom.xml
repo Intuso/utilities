@@ -18,9 +18,6 @@
     </properties>
 
     <modules>
-        <module>actions</module>
-        <module>concurrent</module>
-        <module>io</module>
         <module>listener</module>
         <module>log</module>
         <module>object</module>
