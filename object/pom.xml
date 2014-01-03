@@ -16,14 +16,14 @@
 
         <!-- For logging -->
         <dependency>
-            <groupId>com.intuso.utilities</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>log</artifactId>
             <version>${project.version}</version>
         </dependency>
 
         <!-- Listeners -->
         <dependency>
-            <groupId>com.intuso.utilities</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>listener</artifactId>
             <version>${project.version}</version>
         </dependency>

@@ -16,7 +16,7 @@
 
         <!-- For logging -->
         <dependency>
-            <groupId>com.intuso.utilities</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>log</artifactId>
             <version>${project.version}</version>
         </dependency>
