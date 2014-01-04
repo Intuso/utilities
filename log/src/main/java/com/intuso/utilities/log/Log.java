@@ -1,8 +1,9 @@
 package com.intuso.utilities.log;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import com.google.common.collect.Sets;
+
 import java.util.List;
+import java.util.Set;
 
 /**
  * Log manager
@@ -11,12 +12,10 @@ import java.util.List;
  */
 public class Log {
 
-    private String name;
-
 	/**
 	 * List of message writers
 	 */
-	private List<LogWriter> writers;
+	private Set<LogWriter> writers;
 	
 	/**
 	 * The minimum level of a writer
@@ -26,23 +25,22 @@ public class Log {
 	/**
 	 * Create a new log manager
 	 */
-	public Log(String name) {
-		this(name, new ArrayList<LogWriter>());
+	public Log() {
+		this(Sets.<LogWriter>newHashSet());
 	}
 
     /**
      * Create a new log manager
      */
-    public Log(String name, LogWriter ... writers) {
-        this(name, Arrays.asList(writers));
+    public Log(LogWriter ... writers) {
+        this(Sets.newHashSet(writers));
     }
 	
 	/**
 	 * Create a new log manager
 	 * @param writers writers to write messages to
 	 */
-	public Log(String name, List<LogWriter> writers) {
-        this.name = name;
+	public Log(Set<LogWriter> writers) {
 		this.writers = writers;
 		minLevel = LogLevel.INFO;
 		for(LogWriter writer : this.writers)

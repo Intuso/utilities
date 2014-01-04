@@ -12,4 +12,12 @@
     <name>Utilities Log</name>
     <description>Framework for logging</description>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>15.0</version>
+        </dependency>
+    </dependencies>
+
 </project>

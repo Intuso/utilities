@@ -10,6 +10,8 @@ import com.intuso.utilities.log.LogWriter;
  */
 public class StdOutWriter extends LogWriter {
 
+    private final static String SEPARATOR = ": ";
+
 	/**
 	 * Create a new stdout writer
 	 * @param level level to filter messages at
@@ -20,7 +22,7 @@ public class StdOutWriter extends LogWriter {
 	
 	@Override
 	public void _write(LogLevel level, String message, Throwable t) {
-		System.out.println(message);
+		System.out.println(level + SEPARATOR + message);
         if(t != null) {
             System.out.print(CAUSED_BY_MSG);
             t.printStackTrace(System.out);
