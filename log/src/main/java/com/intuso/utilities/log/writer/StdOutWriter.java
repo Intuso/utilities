@@ -23,9 +23,7 @@ public class StdOutWriter extends LogWriter {
 	@Override
 	public void _write(LogLevel level, String message, Throwable t) {
 		System.out.println(level + SEPARATOR + message);
-        if(t != null) {
-            System.out.print(CAUSED_BY_MSG);
+        if(t != null)
             t.printStackTrace(System.out);
-        }
 	}
 }
