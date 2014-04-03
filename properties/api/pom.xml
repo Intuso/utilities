@@ -9,11 +9,22 @@
     </parent>
 
     <artifactId>properties-api</artifactId>
-    <packaging>pom</packaging>
     <name>Utilities Properties API</name>
     <description>Utilities Properties API</description>
 
     <dependencies>
+
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>log</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>listener</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>

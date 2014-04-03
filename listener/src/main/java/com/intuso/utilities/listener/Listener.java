@@ -7,5 +7,4 @@ package com.intuso.utilities.listener;
  * Time: 18:29
  * To change this template use File | Settings | File Templates.
  */
-public interface Listener {
-}
+public interface Listener {}

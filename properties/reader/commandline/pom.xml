@@ -9,7 +9,6 @@
     </parent>
 
     <artifactId>properties-reader-commandline</artifactId>
-    <packaging>pom</packaging>
     <name>Utilities Properties Reader Command Line</name>
     <description>Utilities Properties Reader Command Line</description>
 

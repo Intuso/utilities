@@ -3,6 +3,8 @@ package com.intuso.utilities.listener;
 import com.google.common.collect.Lists;
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
@@ -15,7 +17,7 @@ import static org.junit.Assert.assertNotNull;
  */
 public class ListenerRegistrationTest {
 
-    private Listeners<TestListener> listeners = new Listeners<TestListener>();
+    private Listeners<TestListener> listeners = new Listeners<TestListener>(new ArrayList<TestListener>());
     private TestListener listener = new TestListener();
 
     @Test

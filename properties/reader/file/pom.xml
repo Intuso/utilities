@@ -9,7 +9,6 @@
     </parent>
 
     <artifactId>properties-reader-file</artifactId>
-    <packaging>pom</packaging>
     <name>Utilities Properties Reader File</name>
     <description>Utilities Properties Reader File</description>
 

@@ -13,10 +13,6 @@ public final class Listeners<L extends Listener> implements Iterable<L> {
 
     private final List<L> listeners;
 
-    public Listeners() {
-        this(new ArrayList<L>());
-    }
-
     public Listeners(List<L> listeners) {
         this.listeners = listeners;
     }
