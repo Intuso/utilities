@@ -21,6 +21,6 @@ public class TestObject extends BaseObject<TestData, TestData, TestObject, Excep
     };
 
     public TestObject(TestData data) {
-        super(data);
+        super(new TestListenersFactory(), data);
     }
 }

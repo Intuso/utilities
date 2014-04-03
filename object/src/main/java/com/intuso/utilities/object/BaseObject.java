@@ -2,6 +2,7 @@ package com.intuso.utilities.object;
 
 import com.intuso.utilities.listener.ListenerRegistration;
 import com.intuso.utilities.listener.Listeners;
+import com.intuso.utilities.listener.ListenersFactory;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -23,13 +24,14 @@ public abstract class BaseObject<DATA extends Data<CHILD_DATA>, CHILD_DATA exten
     private final DATA data;
     private final Map<String, CHILD_OBJECT> children;
     private final Map<String, ListenerRegistration> childListeners;
-    private final Listeners<ObjectListener<? super CHILD_OBJECT>> listeners = new Listeners<ObjectListener<? super CHILD_OBJECT>>();
+    private final Listeners<ObjectListener<? super CHILD_OBJECT>> listeners;
     private final GeneralListener generalListener = new GeneralListener();
     private final AncestorListener ancestorListener = new AncestorListener();
 
-    public BaseObject(DATA data) {
+    public BaseObject(ListenersFactory listenersFactory, DATA data) {
         assert data != null;
         this.data = data;
+        this.listeners = listenersFactory.create();
         children = new TreeMap<String, CHILD_OBJECT>();
         childListeners = new HashMap<String, ListenerRegistration>();
     }
@@ -50,6 +52,25 @@ public abstract class BaseObject<DATA extends Data<CHILD_DATA>, CHILD_DATA exten
 
     public final ListenerRegistration addChildListener(ObjectListener<? super CHILD_OBJECT> listener) {
         return listeners.addListener(listener);
+    }
+
+    public final ListenerRegistration addChildListener(ObjectListener<? super CHILD_OBJECT> listener, boolean callForExistingChildren, boolean callForExistingAncestors) {
+        ListenerRegistration result = listeners.addListener(listener);
+        if(callForExistingChildren) {
+            for(CHILD_OBJECT child : getChildren()) {
+                listener.childObjectAdded(child.getId(), child);
+                if(callForExistingAncestors)
+                    notifyListener(listener, child);
+            }
+        }
+        return result;
+    }
+
+    private void notifyListener(ObjectListener<? super CHILD_OBJECT> listener, BaseObject<?, ?, ?, ?> child) {
+        for(BaseObject<?, ?, ?, ?> object : child.getChildren()) {
+            listener.ancestorObjectAdded(object.getId(), object);
+            notifyListener(listener, object);
+        }
     }
 
     public final String getId() {

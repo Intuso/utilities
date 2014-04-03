@@ -27,12 +27,5 @@
             <artifactId>listener</artifactId>
             <version>${project.version}</version>
         </dependency>
-
-        <!-- Guice goodness -->
-        <dependency>
-            <groupId>com.google.inject</groupId>
-            <artifactId>guice</artifactId>
-            <version>3.0</version>
-        </dependency>
     </dependencies>
 </project>
