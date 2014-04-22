@@ -11,7 +11,7 @@ public class WriteableMapPropertyRepository extends PropertyRepository {
     private final Map<String, String> values;
 
     public static WriteableMapPropertyRepository newEmptyRepository(ListenersFactory listenersFactory) {
-        return newEmptyRepository(null);
+        return newEmptyRepository(listenersFactory, null);
     }
 
     public static WriteableMapPropertyRepository newEmptyRepository(ListenersFactory listenersFactory, PropertyRepository parent) {
