@@ -46,8 +46,16 @@ public class Data<CHILD_DATA extends Data> implements Serializable {
         return id;
     }
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public final Map<String, CHILD_DATA> getChildData() {
         return Collections.unmodifiableMap(childData);
+    }
+
+    public void setChildData(Map<String, CHILD_DATA> childData) {
+        this.childData = childData;
     }
 
     public final CHILD_DATA getChildData(String id) {
