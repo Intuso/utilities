@@ -8,6 +8,7 @@ package com.intuso.utilities.log;
 public abstract class LogWriter {
 
     protected final static String CAUSED_BY_MSG = "Caused by: ";
+    protected final static String SEPARATOR = " - ";
 
 	/**
 	 * The level to filter messages at
