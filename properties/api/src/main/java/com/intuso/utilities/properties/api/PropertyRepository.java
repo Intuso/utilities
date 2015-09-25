@@ -1,11 +1,11 @@
 package com.intuso.utilities.properties.api;
 
-import com.google.common.collect.Maps;
-import com.google.common.collect.Sets;
 import com.intuso.utilities.listener.ListenerRegistration;
 import com.intuso.utilities.listener.Listeners;
 import com.intuso.utilities.listener.ListenersFactory;
 
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -15,7 +15,7 @@ public abstract class PropertyRepository {
 
     private final PropertyRepository parent;
     private final Listeners<PropertyValueChangeListener> listeners;
-    private final Map<String, Listeners<PropertyValueChangeListener>> keyedListeners = Maps.newHashMap();
+    private final Map<String, Listeners<PropertyValueChangeListener>> keyedListeners = new HashMap<String, Listeners<PropertyValueChangeListener>>();
 
     public PropertyRepository(ListenersFactory listenersFactory, PropertyRepository parent) {
         this.listenersFactory = listenersFactory;
@@ -48,7 +48,7 @@ public abstract class PropertyRepository {
     }
 
     public final Set<String> keySet() {
-        Set<String> result = Sets.newHashSet(_keySet());
+        Set<String> result = new HashSet<String>(_keySet());
         if(parent != null)
             result.addAll(parent.keySet());
         return result;

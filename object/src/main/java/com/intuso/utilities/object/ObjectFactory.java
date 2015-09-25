@@ -7,7 +7,6 @@ package com.intuso.utilities.object;
  * Time: 22:17
  * To change this template use File | Settings | File Templates.
  */
-public interface ObjectFactory<DATA extends Data<?>, O extends BaseObject<? extends DATA, ?, ?, ?>,
-        E extends Exception> {
-    public O create(DATA data) throws E;
+public interface ObjectFactory<DATA extends Data<?>, O extends BaseObject<? extends DATA, ?, ?>> {
+    O create(DATA data);
 }

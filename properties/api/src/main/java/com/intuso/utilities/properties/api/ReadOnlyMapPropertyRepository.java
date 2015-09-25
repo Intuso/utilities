@@ -1,8 +1,8 @@
 package com.intuso.utilities.properties.api;
 
-import com.google.common.collect.Maps;
 import com.intuso.utilities.listener.ListenersFactory;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
@@ -15,7 +15,7 @@ public class ReadOnlyMapPropertyRepository extends ReadOnlyPropertyRepository {
     }
 
     public static ReadOnlyMapPropertyRepository newEmptyRepository(ListenersFactory listenersFactory, PropertyRepository parent) {
-        return new ReadOnlyMapPropertyRepository(listenersFactory, parent, Maps.<String, String>newHashMap());
+        return new ReadOnlyMapPropertyRepository(listenersFactory, parent, new HashMap<String, String>());
     }
 
     public ReadOnlyMapPropertyRepository(ListenersFactory listenersFactory, Map<String, String> values) {

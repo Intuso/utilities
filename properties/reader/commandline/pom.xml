@@ -4,18 +4,18 @@
 
     <parent>
         <groupId>com.intuso.utilities</groupId>
-        <artifactId>properties-reader</artifactId>
+        <artifactId>utilities-properties-reader</artifactId>
         <version>1.1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>properties-reader-commandline</artifactId>
+    <artifactId>utilities-properties-reader-commandline</artifactId>
     <name>Utilities Properties Reader Command Line</name>
     <description>Utilities Properties Reader Command Line</description>
 
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>properties-api</artifactId>
+            <artifactId>utilities-properties-api</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>

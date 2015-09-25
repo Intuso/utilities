@@ -1,6 +1,5 @@
 package com.intuso.utilities.properties.reader.file;
 
-import com.google.common.collect.Sets;
 import com.intuso.utilities.listener.ListenersFactory;
 import com.intuso.utilities.properties.api.PropertyRepository;
 
@@ -8,6 +7,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
@@ -22,7 +22,7 @@ import java.util.Set;
 public final class FilePropertyRepository extends PropertyRepository {
 
     private final File file;
-    private final Set<String> keys = Sets.newHashSet();
+    private final Set<String> keys = new HashSet<String>();
     private final Properties properties = new Properties();
 
     public FilePropertyRepository(ListenersFactory listenersFactory, PropertyRepository parent, String filePath) throws IOException {

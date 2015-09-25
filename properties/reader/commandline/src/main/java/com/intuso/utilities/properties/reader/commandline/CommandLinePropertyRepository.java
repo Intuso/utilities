@@ -1,10 +1,10 @@
 package com.intuso.utilities.properties.reader.commandline;
 
-import com.google.common.collect.Maps;
 import com.intuso.utilities.listener.ListenersFactory;
 import com.intuso.utilities.properties.api.PropertyRepository;
 import com.intuso.utilities.properties.api.ReadOnlyPropertyRepository;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
@@ -17,7 +17,7 @@ import java.util.Set;
  */
 public final class CommandLinePropertyRepository extends ReadOnlyPropertyRepository {
 
-    private final Map<String, String> values = Maps.newHashMap();
+    private final Map<String, String> values = new HashMap<String, String>();
 
     public CommandLinePropertyRepository(ListenersFactory listenersFactory, PropertyRepository parent, String[] args) {
         super(listenersFactory, parent);

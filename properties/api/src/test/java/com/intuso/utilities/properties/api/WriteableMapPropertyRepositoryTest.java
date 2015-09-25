@@ -1,8 +1,8 @@
 package com.intuso.utilities.properties.api;
 
-import com.google.common.collect.Maps;
 import org.junit.Test;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
@@ -20,7 +20,7 @@ public class WriteableMapPropertyRepositoryTest {
     @Test
     public void testMapRepository() {
 
-        Map<String, String> values = Maps.newHashMap();
+        Map<String, String> values = new HashMap<String, String>();
         values.put("key1", "value1");
         values.put("key2", "value2");
 

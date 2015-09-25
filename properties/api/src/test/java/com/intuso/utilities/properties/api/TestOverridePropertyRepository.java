@@ -1,8 +1,8 @@
 package com.intuso.utilities.properties.api;
 
-import com.google.common.collect.Maps;
 import org.junit.Test;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
@@ -20,12 +20,12 @@ public class TestOverridePropertyRepository {
     @Test
     public void testOverrideValues() {
 
-        Map<String, String> originalValues = Maps.newHashMap();
+        Map<String, String> originalValues = new HashMap<String, String>();
         originalValues.put("key1", "value1");
         originalValues.put("key2", "value2");
         WriteableMapPropertyRepository originalRepository = new WriteableMapPropertyRepository(new TestListenersFactory(), originalValues);
 
-        Map<String, String> overridenValues = Maps.newHashMap();
+        Map<String, String> overridenValues = new HashMap<String, String>();
         overridenValues.put("key1", "overridenValue1");
         overridenValues.put("key3", "overridenValue3");
         WriteableMapPropertyRepository overridenRepository = new WriteableMapPropertyRepository(new TestListenersFactory(), originalRepository, overridenValues);

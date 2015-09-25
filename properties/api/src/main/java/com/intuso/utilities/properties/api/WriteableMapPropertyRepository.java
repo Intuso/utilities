@@ -1,8 +1,8 @@
 package com.intuso.utilities.properties.api;
 
-import com.google.common.collect.Maps;
 import com.intuso.utilities.listener.ListenersFactory;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
@@ -15,7 +15,7 @@ public class WriteableMapPropertyRepository extends PropertyRepository {
     }
 
     public static WriteableMapPropertyRepository newEmptyRepository(ListenersFactory listenersFactory, PropertyRepository parent) {
-        return new WriteableMapPropertyRepository(listenersFactory, parent, Maps.<String, String>newHashMap());
+        return new WriteableMapPropertyRepository(listenersFactory, parent, new HashMap<String, String>());
     }
 
     public WriteableMapPropertyRepository(ListenersFactory listenersFactory, Map<String, String> values) {

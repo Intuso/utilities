@@ -8,7 +8,7 @@
         <version>1.1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>properties</artifactId>
+    <artifactId>utilities-properties</artifactId>
     <packaging>pom</packaging>
     <name>Utilities Properties</name>
     <description>Utilities Properties</description>

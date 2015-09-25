@@ -7,8 +7,7 @@
         <version>1.1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>listener</artifactId>
-    <packaging>jar</packaging>
+    <artifactId>utilities-listener</artifactId>
     <name>Utilities Listener</name>
     <description>Utility module for handling listeners and their registrations</description>
 
@@ -17,15 +16,15 @@
         <!-- For logging -->
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>log</artifactId>
+            <artifactId>utilities-log</artifactId>
             <version>${project.version}</version>
         </dependency>
 
-        <!-- Guava goodness -->
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-            <version>15.0</version>
+            <version>16.0.1</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 </project>

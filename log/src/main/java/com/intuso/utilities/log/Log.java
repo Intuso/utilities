@@ -1,7 +1,7 @@
 package com.intuso.utilities.log;
 
-import com.google.common.collect.Sets;
-
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -26,14 +26,14 @@ public class Log {
 	 * Create a new log manager
 	 */
 	public Log() {
-		this(Sets.<LogWriter>newHashSet());
+		this(new HashSet<LogWriter>());
 	}
 
     /**
      * Create a new log manager
      */
     public Log(LogWriter ... writers) {
-        this(Sets.newHashSet(writers));
+        this(new HashSet<LogWriter>(Arrays.asList(writers)));
     }
 	
 	/**
