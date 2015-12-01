@@ -107,6 +107,43 @@ public abstract class BaseObject<DATA extends Data<CHILD_DATA>, CHILD_DATA exten
         return children.get(id);
     }
 
+    /**
+     * Gets the object at a path
+     * @param path the path to get the object from
+     * @return the object at that path, or null if none exists
+     */
+    public final BaseObject<?, ?, ?> getObject(String[] path) {
+        return getChild(this, path);
+    }
+
+    /**
+     * Gets the object at a path relative to another object
+     *
+     * @param current the object the path is relative to
+     * @param path the path to get the object from
+     * @return the object at the path relative to the other object, or null if none exists
+     */
+    public final static BaseObject<?, ?, ?> getChild(BaseObject<?, ?, ?> current, String[] path) {
+        return getChild(current, path, 0);
+    }
+
+    /**
+     * Gets the object at a path relative to another object
+     *
+     * @param current the object the path is relative to
+     * @param path the path to get the object from
+     * @param depth the current index in the path
+     * @return the object at the path relative to the other object, or null if none exists
+     */
+    public final static BaseObject<?, ?, ?> getChild(BaseObject<?, ?, ?> current, String[] path, int depth) {
+        if(depth >= path.length)
+            return current;
+        BaseObject<?, ?, ?> next = current.getChild(path[depth]);
+        if(next == null)
+            return null;
+        return getChild(next, path, depth + 1);
+    }
+
     private class GeneralListener implements ObjectListener<CHILD_OBJECT> {
         @Override
         public void childObjectAdded(String childId, CHILD_OBJECT child) {
