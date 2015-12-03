@@ -13,13 +13,6 @@
 
     <dependencies>
 
-        <!-- For logging -->
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>utilities-log</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
