@@ -79,6 +79,8 @@ public abstract class BaseObject<DATA extends Data<CHILD_DATA>, CHILD_DATA exten
 
     protected void addChild(CHILD_OBJECT child) {
         if(child != null) {
+            if(child.getId() == null)
+                throw new RuntimeException("Trying to add child with null id");
             if(children.get(child.getId()) != null || data.getChildData(child.getId()) != null)
                 throw new RuntimeException("A child/child-data with id=\"" + child.getId() + "\" already exists. You must remove the existing one before adding one of the same id");
             children.put(child.getId(), child);

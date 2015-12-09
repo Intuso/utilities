@@ -59,10 +59,12 @@ public class Data<CHILD_DATA extends Data> implements Serializable {
     }
 
     public final CHILD_DATA getChildData(String id) {
-        return childData.get(id);
+        return childData == null ? null : childData.get(id);
     }
 
     public final void addChildData(CHILD_DATA childData) {
+        if(this.childData == null)
+            this.childData = new HashMap<>();
         this.childData.put(childData.getId(), childData);
     }
 
