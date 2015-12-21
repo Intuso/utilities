@@ -32,18 +32,8 @@ public abstract class BaseObject<DATA extends Data<CHILD_DATA>, CHILD_DATA exten
         assert data != null;
         this.data = data;
         this.listeners = listenersFactory.create();
-        children = new TreeMap<String, CHILD_OBJECT>();
-        childListeners = new HashMap<String, ListenerRegistration>();
-    }
-
-    protected void createChildren(ObjectFactory<CHILD_DATA, ? extends CHILD_OBJECT> factory) {
-        for(CHILD_DATA childData : data.getChildData().values())
-            if(children.get(childData.getId()) == null) {
-                CHILD_OBJECT child = factory.create(childData);
-                children.put(childData.getId(), child);
-                childListeners.put(child.getId(), child.addChildListener(ancestorListener));
-                generalListener.childObjectAdded(child.getId(), child);
-            }
+        children = new TreeMap<>();
+        childListeners = new HashMap<>();
     }
 
     public DATA getData() {
@@ -81,10 +71,11 @@ public abstract class BaseObject<DATA extends Data<CHILD_DATA>, CHILD_DATA exten
         if(child != null) {
             if(child.getId() == null)
                 throw new RuntimeException("Trying to add child with null id");
-            if(children.get(child.getId()) != null || data.getChildData(child.getId()) != null)
-                throw new RuntimeException("A child/child-data with id=\"" + child.getId() + "\" already exists. You must remove the existing one before adding one of the same id");
+            if(children.get(child.getId()) != null)
+                throw new RuntimeException("A child with id=\"" + child.getId() + "\" already exists. You must remove the existing one before adding one of the same id");
             children.put(child.getId(), child);
-            data.addChildData(child.getData());
+            if(!data.getChildData().containsKey(child.getId()))
+                data.addChildData(child.getData());
             childListeners.put(child.getId(), child.addChildListener(ancestorListener));
             generalListener.childObjectAdded(child.getId(), child);
         }

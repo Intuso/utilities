@@ -12,15 +12,13 @@ import org.junit.Ignore;
 @Ignore
 public class TestObject extends BaseObject<TestData, TestData, TestObject> {
 
-    public final static ObjectFactory<TestData, TestObject> FACTORY
-            = new ObjectFactory<TestData, TestObject>() {
-        @Override
-        public TestObject create(TestData data) {
-            return new TestObject(data);
-        }
-    };
-
     public TestObject(TestData data) {
         super(new TestListenersFactory(), data);
+    }
+
+    protected void createChildren() {
+        for(TestData childData : getData().getChildData().values())
+            if(getChild(childData.getId()) == null)
+                addChild(new TestObject(childData));
     }
 }

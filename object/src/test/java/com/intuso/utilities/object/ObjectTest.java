@@ -23,7 +23,7 @@ public class ObjectTest {
     public void testCreateObject() throws Exception {
         TestData data = new TestData("id", "randomValue");
         TestObject object = new TestObject(data);
-        object.createChildren(TestObject.FACTORY);
+        object.createChildren();
         assertNotNull(object.getData());
         assertEquals(data, object.getData());
         assertEquals("randomValue", object.getData().getRandomValue());
@@ -37,11 +37,11 @@ public class ObjectTest {
         TestData dataB = new TestData("B");
         TestData data = new TestData("root", dataA, dataB);
         TestObject object = new TestObject(data);
-        object.createChildren(TestObject.FACTORY);
+        object.createChildren();
         assertEquals(data, object.getData());
         assertEquals(2, object.getChildren().size());
-        for(BaseObject w : object.getChildren())
-            w.createChildren(TestObject.FACTORY);
+        for(TestObject w : object.getChildren())
+            w.createChildren();
         assertNotNull(object.getChild("A"));
         assertEquals(dataA, object.getChild("A").getData());
         assertEquals(1, object.getChild("A").getChildren().size());
@@ -60,13 +60,13 @@ public class ObjectTest {
         TestData dataAA = new TestData("AA");
         TestData dataB = new TestData("B");
         TestObject object = new TestObject(data);
-        object.createChildren(TestObject.FACTORY);
+        object.createChildren();
         TestObject objectA = new TestObject(dataA);
-        objectA.createChildren(TestObject.FACTORY);
+        objectA.createChildren();
         TestObject objectAA = new TestObject(dataAA);
-        objectAA.createChildren(TestObject.FACTORY);
+        objectAA.createChildren();
         TestObject objectB = new TestObject(dataB);
-        objectB.createChildren(TestObject.FACTORY);
+        objectB.createChildren();
         objectA.addChild(objectAA);
         object.addChild(objectA);
         object.addChild(objectB);
@@ -90,11 +90,11 @@ public class ObjectTest {
         TestData dataB = new TestData("B");
         TestData data = new TestData("root", dataA, dataB);
         TestObject object = new TestObject(data);
-        object.createChildren(TestObject.FACTORY);
+        object.createChildren();
         assertEquals(data, object.getData());
         assertEquals(2, object.getChildren().size());
-        for(BaseObject child : object.getChildren())
-            child.createChildren(TestObject.FACTORY);
+        for(TestObject child : object.getChildren())
+            child.createChildren();
         assertNotNull(object.getChild("A"));
         assertEquals(dataA, object.getChild("A").getData());
         assertEquals(1, object.getChild("A").getChildren().size());
