@@ -10,7 +10,7 @@ import static org.junit.Assert.assertNotNull;
 
 /**
  * Created with IntelliJ IDEA.
- * User: ravnroot
+ * User: tomc
  * Date: 08/07/12
  * Time: 12:05
  * To change this template use File | Settings | File Templates.
