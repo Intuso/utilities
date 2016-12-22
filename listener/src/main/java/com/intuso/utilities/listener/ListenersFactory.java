@@ -8,5 +8,5 @@ package com.intuso.utilities.listener;
  * To change this template use File | Settings | File Templates.
  */
 public interface ListenersFactory {
-    public <LISTENER extends Listener> Listeners<LISTENER> create();
+    <LISTENER> Listeners<LISTENER> create();
 }

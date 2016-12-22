@@ -10,19 +10,19 @@ import java.util.List;
  * Time: 12:11
  * To change this template use File | Settings | File Templates.
  */
-public final class Listeners<L extends Listener> implements Iterable<L> {
+public final class Listeners<LISTENER> implements Iterable<LISTENER> {
 
-    private final List<L> listeners;
+    private final List<LISTENER> listeners;
 
-    public Listeners(List<L> listeners) {
+    public Listeners(List<LISTENER> listeners) {
         this.listeners = listeners;
     }
 
-    public ListenerRegistration addListener(L listener) {
+    public ListenerRegistration addListener(LISTENER listener) {
         return new ListenerRegistration(listeners, listener);
     }
 
-    public Iterator<L> iterator() {
+    public Iterator<LISTENER> iterator() {
         return listeners.iterator();
     }
 }

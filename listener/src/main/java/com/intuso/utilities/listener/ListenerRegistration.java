@@ -9,12 +9,12 @@ import java.util.List;
  * Time: 18:30
  * To change this template use File | Settings | File Templates.
  */
-public class ListenerRegistration {
+public final class ListenerRegistration {
 
     private List<?> listeners;
-    private Listener listener;
+    private Object listener;
 
-    public <L extends Listener> ListenerRegistration(List<? super L> listeners, L listener) {
+    <LISTENER> ListenerRegistration(List<? super LISTENER> listeners, LISTENER listener) {
         this.listeners = listeners;
         this.listener = listener;
         listeners.add(listener);

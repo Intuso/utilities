@@ -72,5 +72,5 @@ public class ListenerRegistrationTest {
         assertEquals(0, Lists.newArrayList(listeners).size());
     }
 
-    private class TestListener implements Listener {}
+    private class TestListener {}
 }

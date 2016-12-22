@@ -1,6 +1,5 @@
 package com.intuso.utilities.properties.api;
 
-import com.intuso.utilities.listener.Listener;
 import com.intuso.utilities.listener.Listeners;
 import com.intuso.utilities.listener.ListenersFactory;
 
@@ -15,7 +14,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
  */
 public class TestListenersFactory implements ListenersFactory {
     @Override
-    public <LISTENER extends Listener> Listeners<LISTENER> create() {
+    public <LISTENER> Listeners<LISTENER> create() {
         return new Listeners<LISTENER>(new CopyOnWriteArrayList<LISTENER>());
     }
 }
