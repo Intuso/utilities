@@ -1,6 +1,6 @@
 package com.intuso.utilities.properties.api;
 
-import com.intuso.utilities.listener.ListenersFactory;
+import com.intuso.utilities.listener.ManagedCollectionFactory;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,20 +10,20 @@ public class WriteableMapPropertyRepository extends PropertyRepository {
 
     private final Map<String, String> values;
 
-    public static WriteableMapPropertyRepository newEmptyRepository(ListenersFactory listenersFactory) {
-        return newEmptyRepository(listenersFactory, null);
+    public static WriteableMapPropertyRepository newEmptyRepository(ManagedCollectionFactory managedCollectionFactory) {
+        return newEmptyRepository(managedCollectionFactory, null);
     }
 
-    public static WriteableMapPropertyRepository newEmptyRepository(ListenersFactory listenersFactory, PropertyRepository parent) {
-        return new WriteableMapPropertyRepository(listenersFactory, parent, new HashMap<String, String>());
+    public static WriteableMapPropertyRepository newEmptyRepository(ManagedCollectionFactory managedCollectionFactory, PropertyRepository parent) {
+        return new WriteableMapPropertyRepository(managedCollectionFactory, parent, new HashMap<String, String>());
     }
 
-    public WriteableMapPropertyRepository(ListenersFactory listenersFactory, Map<String, String> values) {
-        this(listenersFactory, null, values);
+    public WriteableMapPropertyRepository(ManagedCollectionFactory managedCollectionFactory, Map<String, String> values) {
+        this(managedCollectionFactory, null, values);
     }
 
-    public WriteableMapPropertyRepository(ListenersFactory listenersFactory, PropertyRepository parent, Map<String, String> values) {
-        super(listenersFactory, parent);
+    public WriteableMapPropertyRepository(ManagedCollectionFactory managedCollectionFactory, PropertyRepository parent, Map<String, String> values) {
+        super(managedCollectionFactory, parent);
         this.values = values;
     }
 

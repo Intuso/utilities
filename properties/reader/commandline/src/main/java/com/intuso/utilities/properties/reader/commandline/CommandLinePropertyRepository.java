@@ -1,6 +1,6 @@
 package com.intuso.utilities.properties.reader.commandline;
 
-import com.intuso.utilities.listener.ListenersFactory;
+import com.intuso.utilities.listener.ManagedCollectionFactory;
 import com.intuso.utilities.properties.api.PropertyRepository;
 import com.intuso.utilities.properties.api.ReadOnlyPropertyRepository;
 
@@ -19,8 +19,8 @@ public final class CommandLinePropertyRepository extends ReadOnlyPropertyReposit
 
     private final Map<String, String> values = new HashMap<String, String>();
 
-    public CommandLinePropertyRepository(ListenersFactory listenersFactory, PropertyRepository parent, String[] args) {
-        super(listenersFactory, parent);
+    public CommandLinePropertyRepository(ManagedCollectionFactory managedCollectionFactory, PropertyRepository parent, String[] args) {
+        super(managedCollectionFactory, parent);
         if(args.length % 2 == 1)
             throw new IllegalArgumentException("Odd number of arguments to parse - must be even");
 

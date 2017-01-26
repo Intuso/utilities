@@ -24,7 +24,7 @@ public class WriteableMapPropertyRepositoryTest {
         values.put("key1", "value1");
         values.put("key2", "value2");
 
-        WriteableMapPropertyRepository propertyRepository = new WriteableMapPropertyRepository(new TestListenersFactory(), values);
+        WriteableMapPropertyRepository propertyRepository = new WriteableMapPropertyRepository(new TestManagedCollectionFactory(), values);
 
         assertEquals(2, propertyRepository.keySet().size());
         assertTrue(propertyRepository.keySet().contains("key1"));

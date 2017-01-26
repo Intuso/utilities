@@ -7,6 +7,6 @@ package com.intuso.utilities.listener;
  * Time: 08:18
  * To change this template use File | Settings | File Templates.
  */
-public interface ListenersFactory {
-    <LISTENER> Listeners<LISTENER> create();
+public interface ManagedCollectionFactory {
+    <LISTENER> ManagedCollection<LISTENER> create();
 }

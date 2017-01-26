@@ -1,8 +1,8 @@
 package com.intuso.utilities.properties.api;
 
-import com.intuso.utilities.listener.ListenerRegistration;
-import com.intuso.utilities.listener.Listeners;
-import com.intuso.utilities.listener.ListenersFactory;
+import com.intuso.utilities.listener.MemberRegistration;
+import com.intuso.utilities.listener.ManagedCollection;
+import com.intuso.utilities.listener.ManagedCollectionFactory;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -11,28 +11,28 @@ import java.util.Set;
 
 public abstract class PropertyRepository {
 
-    private final ListenersFactory listenersFactory;
+    private final ManagedCollectionFactory managedCollectionFactory;
 
     private final PropertyRepository parent;
-    private final Listeners<PropertyValueChangeListener> listeners;
-    private final Map<String, Listeners<PropertyValueChangeListener>> keyedListeners = new HashMap<String, Listeners<PropertyValueChangeListener>>();
+    private final ManagedCollection<PropertyValueChangeListener> listeners;
+    private final Map<String, ManagedCollection<PropertyValueChangeListener>> keyedListeners = new HashMap<String, ManagedCollection<PropertyValueChangeListener>>();
 
-    public PropertyRepository(ListenersFactory listenersFactory, PropertyRepository parent) {
-        this.listenersFactory = listenersFactory;
+    public PropertyRepository(ManagedCollectionFactory managedCollectionFactory, PropertyRepository parent) {
+        this.managedCollectionFactory = managedCollectionFactory;
         this.parent = parent;
-        this.listeners = listenersFactory.create();
+        this.listeners = managedCollectionFactory.create();
         if(parent != null)
             parent.addListener(new OriginalsListener());
     }
 
-    public final ListenerRegistration addListener(PropertyValueChangeListener listener) {
-        return listeners.addListener(listener);
+    public final MemberRegistration addListener(PropertyValueChangeListener listener) {
+        return listeners.add(listener);
     }
 
-    public final ListenerRegistration addListener(String key, PropertyValueChangeListener listener) {
+    public final MemberRegistration addListener(String key, PropertyValueChangeListener listener) {
         if(!keyedListeners.containsKey(key))
-            keyedListeners.put(key, listenersFactory.<PropertyValueChangeListener>create());
-        return keyedListeners.get(key).addListener(listener);
+            keyedListeners.put(key, managedCollectionFactory.<PropertyValueChangeListener>create());
+        return keyedListeners.get(key).add(listener);
     }
 
     protected final void notifyListeners(String key, String oldValue, String newValue) {

@@ -1,6 +1,6 @@
 package com.intuso.utilities.properties.api;
 
-import com.intuso.utilities.listener.ListenersFactory;
+import com.intuso.utilities.listener.ManagedCollectionFactory;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,20 +10,20 @@ public class ReadOnlyMapPropertyRepository extends ReadOnlyPropertyRepository {
 
     private final Map<String, String> values;
 
-    public static ReadOnlyMapPropertyRepository newEmptyRepository(ListenersFactory listenersFactory) {
-        return newEmptyRepository(listenersFactory, null);
+    public static ReadOnlyMapPropertyRepository newEmptyRepository(ManagedCollectionFactory managedCollectionFactory) {
+        return newEmptyRepository(managedCollectionFactory, null);
     }
 
-    public static ReadOnlyMapPropertyRepository newEmptyRepository(ListenersFactory listenersFactory, PropertyRepository parent) {
-        return new ReadOnlyMapPropertyRepository(listenersFactory, parent, new HashMap<String, String>());
+    public static ReadOnlyMapPropertyRepository newEmptyRepository(ManagedCollectionFactory managedCollectionFactory, PropertyRepository parent) {
+        return new ReadOnlyMapPropertyRepository(managedCollectionFactory, parent, new HashMap<String, String>());
     }
 
-    public ReadOnlyMapPropertyRepository(ListenersFactory listenersFactory, Map<String, String> values) {
-        this(listenersFactory, null, values);
+    public ReadOnlyMapPropertyRepository(ManagedCollectionFactory managedCollectionFactory, Map<String, String> values) {
+        this(managedCollectionFactory, null, values);
     }
 
-    public ReadOnlyMapPropertyRepository(ListenersFactory listenersFactory, PropertyRepository parent, Map<String, String> values) {
-        super(listenersFactory, parent);
+    public ReadOnlyMapPropertyRepository(ManagedCollectionFactory managedCollectionFactory, PropertyRepository parent, Map<String, String> values) {
+        super(managedCollectionFactory, parent);
         this.values = values;
     }
 

@@ -17,19 +17,19 @@ import static org.junit.Assert.assertNotNull;
  */
 public class ListenerRegistrationTest {
 
-    private Listeners<TestListener> listeners = new Listeners<TestListener>(new ArrayList<TestListener>());
+    private ManagedCollection<TestListener> listeners = new ManagedCollection<TestListener>(new ArrayList<TestListener>());
     private TestListener listener = new TestListener();
 
     @Test
     public void testAddListener() {
-        ListenerRegistration lr = listeners.addListener(listener);
+        MemberRegistration lr = listeners.add(listener);
         assertNotNull(lr);
         assertEquals(1, Lists.newArrayList(listeners).size());
     }
 
     @Test
     public void testRemoveListener() {
-        ListenerRegistration lr = listeners.addListener(listener);
+        MemberRegistration lr = listeners.add(listener);
         assertNotNull(lr);
         assertEquals(1, Lists.newArrayList(listeners).size());
         lr.removeListener();
@@ -38,7 +38,7 @@ public class ListenerRegistrationTest {
 
     @Test
     public void testRemoveListenerMultipleTimes() {
-        ListenerRegistration lr = listeners.addListener(listener);
+        MemberRegistration lr = listeners.add(listener);
         assertNotNull(lr);
         assertEquals(1, Lists.newArrayList(listeners).size());
         lr.removeListener();
@@ -52,8 +52,8 @@ public class ListenerRegistrationTest {
 
     @Test
     public void testAddMultipleListener() {
-        ListenerRegistration lr1 = listeners.addListener(listener);
-        ListenerRegistration lr2 = listeners.addListener(listener);
+        MemberRegistration lr1 = listeners.add(listener);
+        MemberRegistration lr2 = listeners.add(listener);
         assertNotNull(lr1);
         assertNotNull(lr2);
         assertEquals(2, Lists.newArrayList(listeners).size());
@@ -61,8 +61,8 @@ public class ListenerRegistrationTest {
 
     @Test
     public void testRemoveMultipleListener() {
-        ListenerRegistration lr1 = listeners.addListener(listener);
-        ListenerRegistration lr2 = listeners.addListener(listener);
+        MemberRegistration lr1 = listeners.add(listener);
+        MemberRegistration lr2 = listeners.add(listener);
         assertNotNull(lr1);
         assertNotNull(lr2);
         assertEquals(2, Lists.newArrayList(listeners).size());

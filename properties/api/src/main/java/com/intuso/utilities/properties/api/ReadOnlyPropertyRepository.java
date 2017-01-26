@@ -1,6 +1,6 @@
 package com.intuso.utilities.properties.api;
 
-import com.intuso.utilities.listener.ListenersFactory;
+import com.intuso.utilities.listener.ManagedCollectionFactory;
 
 /**
  * Created with IntelliJ IDEA.
@@ -13,8 +13,8 @@ public abstract class ReadOnlyPropertyRepository extends PropertyRepository {
 
     private final PropertyRepository parent;
 
-    public ReadOnlyPropertyRepository(ListenersFactory listenersFactory, PropertyRepository parent) {
-        super(listenersFactory, parent);
+    public ReadOnlyPropertyRepository(ManagedCollectionFactory managedCollectionFactory, PropertyRepository parent) {
+        super(managedCollectionFactory, parent);
         this.parent = parent;
     }
 

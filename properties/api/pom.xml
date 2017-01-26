@@ -16,7 +16,7 @@
 
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>utilities-listener</artifactId>
+            <artifactId>utilities-collection</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>

@@ -1,6 +1,6 @@
 package com.intuso.utilities.properties.reader.file;
 
-import com.intuso.utilities.listener.ListenersFactory;
+import com.intuso.utilities.listener.ManagedCollectionFactory;
 import com.intuso.utilities.properties.api.PropertyRepository;
 
 import java.io.File;
@@ -25,12 +25,12 @@ public final class FilePropertyRepository extends PropertyRepository {
     private final Set<String> keys = new HashSet<String>();
     private final Properties properties = new Properties();
 
-    public FilePropertyRepository(ListenersFactory listenersFactory, PropertyRepository parent, String filePath) throws IOException {
-        this(listenersFactory, parent, new File(filePath));
+    public FilePropertyRepository(ManagedCollectionFactory managedCollectionFactory, PropertyRepository parent, String filePath) throws IOException {
+        this(managedCollectionFactory, parent, new File(filePath));
     }
 
-    public FilePropertyRepository(ListenersFactory listenersFactory, PropertyRepository parent, File file) throws IOException {
-        super(listenersFactory, parent);
+    public FilePropertyRepository(ManagedCollectionFactory managedCollectionFactory, PropertyRepository parent, File file) throws IOException {
+        super(managedCollectionFactory, parent);
         this.file = file;
         properties.load(new FileInputStream(file));
         for(Map.Entry<Object, Object> entry : properties.entrySet())

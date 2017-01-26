@@ -23,12 +23,12 @@ public class TestOverridePropertyRepository {
         Map<String, String> originalValues = new HashMap<String, String>();
         originalValues.put("key1", "value1");
         originalValues.put("key2", "value2");
-        WriteableMapPropertyRepository originalRepository = new WriteableMapPropertyRepository(new TestListenersFactory(), originalValues);
+        WriteableMapPropertyRepository originalRepository = new WriteableMapPropertyRepository(new TestManagedCollectionFactory(), originalValues);
 
         Map<String, String> overridenValues = new HashMap<String, String>();
         overridenValues.put("key1", "overridenValue1");
         overridenValues.put("key3", "overridenValue3");
-        WriteableMapPropertyRepository overridenRepository = new WriteableMapPropertyRepository(new TestListenersFactory(), originalRepository, overridenValues);
+        WriteableMapPropertyRepository overridenRepository = new WriteableMapPropertyRepository(new TestManagedCollectionFactory(), originalRepository, overridenValues);
 
         assertEquals(3, overridenRepository.keySet().size());
         assertTrue(overridenRepository.keySet().contains("key1"));
