@@ -1,7 +1,7 @@
 package com.intuso.utilities.listener;
 
+import java.util.Collection;
 import java.util.Iterator;
-import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -10,19 +10,40 @@ import java.util.List;
  * Time: 12:11
  * To change this template use File | Settings | File Templates.
  */
-public final class ManagedCollection<LISTENER> implements Iterable<LISTENER> {
+public final class ManagedCollection<T> implements Iterable<T> {
 
-    private final List<LISTENER> listeners;
+    private final Collection<T> elements;
 
-    public ManagedCollection(List<LISTENER> listeners) {
-        this.listeners = listeners;
+    public ManagedCollection(Collection<T> elements) {
+        this.elements = elements;
     }
 
-    public MemberRegistration add(LISTENER listener) {
-        return new MemberRegistration(listeners, listener);
+    public Registration add(T element) {
+        return new Registration(element);
     }
 
-    public Iterator<LISTENER> iterator() {
-        return listeners.iterator();
+    public Iterator<T> iterator() {
+        return elements.iterator();
+    }
+
+    /**
+     * Created with IntelliJ IDEA.
+     * User: tomc
+     * Date: 07/07/12
+     * Time: 18:30
+     * To change this template use File | Settings | File Templates.
+     */
+    public final class Registration {
+
+        private Object object;
+
+        private Registration(T element) {
+            this.object = element;
+            elements.add(element);
+        }
+
+        public final void remove() {
+            elements.remove(object);
+        }
     }
 }

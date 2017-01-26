@@ -22,38 +22,38 @@ public class ListenerRegistrationTest {
 
     @Test
     public void testAddListener() {
-        MemberRegistration lr = listeners.add(listener);
+        ManagedCollection.Registration lr = listeners.add(listener);
         assertNotNull(lr);
         assertEquals(1, Lists.newArrayList(listeners).size());
     }
 
     @Test
     public void testRemoveListener() {
-        MemberRegistration lr = listeners.add(listener);
+        ManagedCollection.Registration lr = listeners.add(listener);
         assertNotNull(lr);
         assertEquals(1, Lists.newArrayList(listeners).size());
-        lr.removeListener();
+        lr.remove();
         assertEquals(0, Lists.newArrayList(listeners).size());
     }
 
     @Test
     public void testRemoveListenerMultipleTimes() {
-        MemberRegistration lr = listeners.add(listener);
+        ManagedCollection.Registration lr = listeners.add(listener);
         assertNotNull(lr);
         assertEquals(1, Lists.newArrayList(listeners).size());
-        lr.removeListener();
+        lr.remove();
         assertEquals(0, Lists.newArrayList(listeners).size());
-        lr.removeListener();
-        lr.removeListener();
-        lr.removeListener();
-        lr.removeListener();
+        lr.remove();
+        lr.remove();
+        lr.remove();
+        lr.remove();
         assertEquals(0, Lists.newArrayList(listeners).size());
     }
 
     @Test
     public void testAddMultipleListener() {
-        MemberRegistration lr1 = listeners.add(listener);
-        MemberRegistration lr2 = listeners.add(listener);
+        ManagedCollection.Registration lr1 = listeners.add(listener);
+        ManagedCollection.Registration lr2 = listeners.add(listener);
         assertNotNull(lr1);
         assertNotNull(lr2);
         assertEquals(2, Lists.newArrayList(listeners).size());
@@ -61,14 +61,14 @@ public class ListenerRegistrationTest {
 
     @Test
     public void testRemoveMultipleListener() {
-        MemberRegistration lr1 = listeners.add(listener);
-        MemberRegistration lr2 = listeners.add(listener);
+        ManagedCollection.Registration lr1 = listeners.add(listener);
+        ManagedCollection.Registration lr2 = listeners.add(listener);
         assertNotNull(lr1);
         assertNotNull(lr2);
         assertEquals(2, Lists.newArrayList(listeners).size());
-        lr1.removeListener();
+        lr1.remove();
         assertEquals(1, Lists.newArrayList(listeners).size());
-        lr2.removeListener();
+        lr2.remove();
         assertEquals(0, Lists.newArrayList(listeners).size());
     }
 

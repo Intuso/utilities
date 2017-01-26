@@ -1,6 +1,5 @@
 package com.intuso.utilities.properties.api;
 
-import com.intuso.utilities.listener.MemberRegistration;
 import com.intuso.utilities.listener.ManagedCollection;
 import com.intuso.utilities.listener.ManagedCollectionFactory;
 
@@ -25,11 +24,11 @@ public abstract class PropertyRepository {
             parent.addListener(new OriginalsListener());
     }
 
-    public final MemberRegistration addListener(PropertyValueChangeListener listener) {
+    public final ManagedCollection.Registration addListener(PropertyValueChangeListener listener) {
         return listeners.add(listener);
     }
 
-    public final MemberRegistration addListener(String key, PropertyValueChangeListener listener) {
+    public final ManagedCollection.Registration addListener(String key, PropertyValueChangeListener listener) {
         if(!keyedListeners.containsKey(key))
             keyedListeners.put(key, managedCollectionFactory.<PropertyValueChangeListener>create());
         return keyedListeners.get(key).add(listener);
