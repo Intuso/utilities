@@ -1,4 +1,4 @@
-package com.intuso.utilities.listener;
+package com.intuso.utilities.collection;
 
 /**
  * Created with IntelliJ IDEA.

@@ -1,4 +1,4 @@
-package com.intuso.utilities.listener;
+package com.intuso.utilities.collection;
 
 import com.google.common.collect.Lists;
 import org.junit.Test;

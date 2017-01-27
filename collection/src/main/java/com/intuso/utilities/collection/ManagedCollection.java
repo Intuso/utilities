@@ -1,4 +1,4 @@
-package com.intuso.utilities.listener;
+package com.intuso.utilities.collection;
 
 import java.util.Collection;
 import java.util.Iterator;
