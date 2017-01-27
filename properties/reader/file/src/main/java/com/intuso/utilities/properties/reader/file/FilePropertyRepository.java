@@ -1,6 +1,6 @@
 package com.intuso.utilities.properties.reader.file;
 
-import com.intuso.utilities.listener.ManagedCollectionFactory;
+import com.intuso.utilities.collection.ManagedCollectionFactory;
 import com.intuso.utilities.properties.api.PropertyRepository;
 
 import java.io.File;

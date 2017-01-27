@@ -1,6 +1,6 @@
 package com.intuso.utilities.properties.api;
 
-import com.intuso.utilities.listener.ManagedCollectionFactory;
+import com.intuso.utilities.collection.ManagedCollectionFactory;
 
 /**
  * Created with IntelliJ IDEA.

@@ -1,6 +1,6 @@
 package com.intuso.utilities.properties.reader.commandline;
 
-import com.intuso.utilities.listener.ManagedCollectionFactory;
+import com.intuso.utilities.collection.ManagedCollectionFactory;
 import com.intuso.utilities.properties.api.PropertyRepository;
 import com.intuso.utilities.properties.api.ReadOnlyPropertyRepository;
 
