@@ -1,4 +1,4 @@
-package com.intuso.utilities.webserver.ioc;
+package com.intuso.utilities.webserver;
 
 import com.google.common.util.concurrent.AbstractIdleService;
 import com.google.inject.Inject;
