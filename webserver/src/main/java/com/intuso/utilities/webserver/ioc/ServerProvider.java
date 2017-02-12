@@ -4,6 +4,7 @@ import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.google.inject.servlet.GuiceFilter;
 import org.eclipse.jetty.server.Server;
+import org.eclipse.jetty.server.session.SessionHandler;
 import org.eclipse.jetty.servlet.FilterHolder;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHandler;
@@ -28,13 +29,23 @@ public class ServerProvider implements Provider<Server> {
 
     @Override
     public Server get() {
-        Server server = new Server();
-        ServletContextHandler handler = new ServletContextHandler();
-        handler.setContextPath("/");
-        handler.addServlet(ServletHandler.Default404Servlet.class, "/");
+
+        // create the program handler, in this case a guice filter and default 404 servlet
+        ServletContextHandler servletContextHandler = new ServletContextHandler();
+        servletContextHandler.setContextPath("/");
+        servletContextHandler.addServlet(ServletHandler.Default404Servlet.class, "/");
         FilterHolder guiceFilterHolder = new FilterHolder(guiceFilter);
-        handler.addFilter(guiceFilterHolder, "/*", EnumSet.allOf(DispatcherType.class));
-        server.setHandler(handler);
+        servletContextHandler.addFilter(guiceFilterHolder, "/*", EnumSet.allOf(DispatcherType.class));
+
+        // create the session handler and wrap the servlet context handler in it
+        SessionHandler sessionHandler = new SessionHandler();
+        sessionHandler.setSessionCookie("INTUSO_HM_SESSION");
+        sessionHandler.setHttpOnly(true);
+        sessionHandler.setHandler(servletContextHandler);
+
+        // create the server and set the main handler as the context handler
+        Server server = new Server();
+        server.setHandler(sessionHandler);
         for(ConnectorProvider connector : connectors)
             server.addConnector(connector.get(server));
         return server;
