@@ -15,9 +15,9 @@ import static org.junit.Assert.assertNotNull;
  * Time: 12:05
  * To change this template use File | Settings | File Templates.
  */
-public class ListenerRegistrationTest {
+public class ManagedCollectionRegistrationTest {
 
-    private ManagedCollection<TestListener> listeners = new ManagedCollection<TestListener>(new ArrayList<TestListener>());
+    private ManagedCollection<TestListener> listeners = new ManagedCollection<>(new ArrayList<TestListener>());
     private TestListener listener = new TestListener();
 
     @Test
