@@ -11,64 +11,47 @@
     <name>Utilities Webserver</name>
     <description>Utility module for creating a jetty/jersey/jaxrs webserver glued together with Guice</description>
 
-    <properties>
-        <guice.version>4.1.0</guice.version>
-        <glassfish>2.5.0-b05</glassfish>
-        <jetty.version>9.4.0.v20161208</jetty.version>
-        <jaxrs.version>2.0.1</jaxrs.version>
-        <jersey.version>2.23.2</jersey.version>
-    </properties>
-
     <dependencies>
 
         <dependency>
             <groupId>com.google.inject</groupId>
             <artifactId>guice</artifactId>
-            <version>${guice.version}</version>
         </dependency>
         <dependency>
             <groupId>com.google.inject.extensions</groupId>
             <artifactId>guice-multibindings</artifactId>
-            <version>${guice.version}</version>
         </dependency>
         <dependency>
             <groupId>com.google.inject.extensions</groupId>
             <artifactId>guice-servlet</artifactId>
-            <version>${guice.version}</version>
         </dependency>
         <dependency>
             <groupId>org.glassfish.hk2</groupId>
             <artifactId>guice-bridge</artifactId>
-            <version>${glassfish}</version>
         </dependency>
 
         <dependency>
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-server</artifactId>
-            <version>${jetty.version}</version>
         </dependency>
         <dependency>
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-servlet</artifactId>
-            <version>${jetty.version}</version>
         </dependency>
 
         <dependency>
             <groupId>javax.ws.rs</groupId>
             <artifactId>javax.ws.rs-api</artifactId>
-            <version>${jaxrs.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.glassfish.jersey.containers</groupId>
             <artifactId>jersey-container-servlet</artifactId>
-            <version>${jersey.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.glassfish.jersey.media</groupId>
             <artifactId>jersey-media-json-jackson</artifactId>
-            <version>${jersey.version}</version>
         </dependency>
     </dependencies>
 </project>
