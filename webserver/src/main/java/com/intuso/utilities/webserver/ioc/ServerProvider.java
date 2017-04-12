@@ -20,11 +20,13 @@ public class ServerProvider implements Provider<Server> {
 
     private final GuiceFilter guiceFilter;
     private final Set<ConnectorProvider> connectors;
+    private final String cookieName;
 
     @Inject
-    public ServerProvider(GuiceFilter guiceFilter, Set<ConnectorProvider> connectors) {
+    public ServerProvider(GuiceFilter guiceFilter, Set<ConnectorProvider> connectors, @SessionCookie String cookieName) {
         this.guiceFilter = guiceFilter;
         this.connectors = connectors;
+        this.cookieName = cookieName;
     }
 
     @Override
@@ -39,7 +41,7 @@ public class ServerProvider implements Provider<Server> {
 
         // create the session handler and wrap the servlet context handler in it
         SessionHandler sessionHandler = new SessionHandler();
-        sessionHandler.setSessionCookie("INTUSO_HM_SESSION");
+        sessionHandler.setSessionCookie(cookieName);
         sessionHandler.setHttpOnly(true);
         sessionHandler.setHandler(servletContextHandler);
 
