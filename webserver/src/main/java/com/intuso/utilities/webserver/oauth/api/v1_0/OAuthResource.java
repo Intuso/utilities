@@ -24,10 +24,7 @@ import org.slf4j.LoggerFactory;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
@@ -52,8 +49,8 @@ public class OAuthResource {
         this.oAuthStore = oAuthStore;
     }
 
-    @POST
-    @Path("/authorise")
+    @GET
+    @Path("/authorize")
     public Response authorize(@Context HttpServletRequest request) throws URISyntaxException, OAuthSystemException {
 
         logger.debug("Authz request received");
