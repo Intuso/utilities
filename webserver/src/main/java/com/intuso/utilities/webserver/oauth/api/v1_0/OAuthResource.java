@@ -53,7 +53,7 @@ public class OAuthResource {
     @Path("/authorize")
     public Response authorize(@Context HttpServletRequest request) throws URISyntaxException, OAuthSystemException {
 
-        logger.debug("Authz request received");
+        logger.debug("Authorise request received");
 
         try {
 
@@ -82,13 +82,13 @@ public class OAuthResource {
             String redirectURI = oauthRequest.getParam(OAuth.OAUTH_REDIRECT_URI);
             final OAuthResponse response = builder.location(redirectURI).buildQueryMessage();
 
-            logger.debug("Authz request for client {} granted for user {}", client.getId(), userId);
+            logger.debug("Authorise request for client {} granted for user {}. Redirecting to {}", client.getId(), userId, response.getLocationUri());
 
             return Response.status(response.getResponseStatus())
                     .location(new URI(response.getLocationUri()))
                     .build();
         } catch (OAuthProblemException e) {
-            logger.debug("Authz request failed", e);
+            logger.debug("Authorise request failed", e);
             return buildBadOAuthRequestResponse(e);
         }
     }
@@ -140,16 +140,16 @@ public class OAuthResource {
         switch (grantType) {
             case AUTHORIZATION_CODE:
 
-                logger.debug("Requesting token for authz code");
+                logger.debug("Requesting token for authorisation code");
 
                 // Get the authorization code from the request.
                 Authorisation authorisation = oAuthStore.getAuthorisation(oauthRequest.getCode());
                 if (authorisation == null)
-                    return buildBadRequestResponse("Unknown auth code: " + oauthRequest.getParam(OAuth.OAUTH_CODE));
+                    return buildBadRequestResponse("Unknown authorisation code: " + oauthRequest.getParam(OAuth.OAUTH_CODE));
 
                 // check the client is the same
                 if(!authorisation.getClient().getId().equals(client.getId()))
-                    return buildBadRequestResponse("OAuth Client does not match the client for the authorization code");
+                    return buildBadRequestResponse("OAuth Client does not match the client for the authorisation code");
 
                 token = new Token(
                         UUID.randomUUID().toString(),
@@ -160,7 +160,7 @@ public class OAuthResource {
                         System.currentTimeMillis() + TOKEN_LIFETIME); // + 1 day
                 oAuthStore.deleteAuthorisation(authorisation.getCode());
 
-                logger.debug("Swapping authz code {} for token {}", authorisation.getCode(), token.getToken());
+                logger.debug("Swapping authorisation code {} for token {}", authorisation.getCode(), token.getToken());
 
                 // todo
                 // check the authorization code hasn't expired
