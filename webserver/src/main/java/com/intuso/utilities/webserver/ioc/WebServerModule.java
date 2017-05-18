@@ -14,6 +14,7 @@ import com.intuso.utilities.webserver.config.PortConfig;
 import com.intuso.utilities.webserver.filter.security.ioc.SecurityModule;
 import com.intuso.utilities.webserver.oauth.ioc.OAuthApiModule;
 import org.eclipse.jetty.server.Server;
+import org.eclipse.jetty.server.handler.ContextHandler;
 
 import java.util.Set;
 
@@ -45,6 +46,9 @@ public class WebServerModule extends AbstractModule {
         else
             bind(new TypeLiteral<Set<PortConfig>>() {}).toProvider(configsProviderClass);
         bind(new TypeLiteral<Set<ConnectorProvider>>() {}).toProvider(ConnectorsProvider.class);
+
+        // make an empty set of context handlers in case none are bound
+        Multibinder.newSetBinder(binder(), ContextHandler.class);
 
         // bind the server itself
         bind(Server.class).toProvider(ServerProvider.class);

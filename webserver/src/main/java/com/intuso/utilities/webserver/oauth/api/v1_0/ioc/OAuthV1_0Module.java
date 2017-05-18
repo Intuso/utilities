@@ -7,6 +7,6 @@ import com.intuso.utilities.webserver.ioc.JerseyResourcesModule;
  */
 public class OAuthV1_0Module extends JerseyResourcesModule {
     public OAuthV1_0Module() {
-        super("/api/oauth/1.0/", OAuthV1_0ResourceConfig.class);
+        super("/oauth/1.0/", OAuthV1_0ResourceConfig.class);
     }
 }

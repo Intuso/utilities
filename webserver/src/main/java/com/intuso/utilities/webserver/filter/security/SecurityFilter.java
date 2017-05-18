@@ -88,7 +88,7 @@ public class SecurityFilter implements Filter {
                 // not authorised to access the resource so redirect to login page
                 logger.debug("Redirecting to login page: no oAuth or session for secured endpoint {} {}", httpRequest.getMethod(), httpRequest.getRequestURI());
                 String encodedURL = URLEncoder.encode(getOriginalUrl(httpRequest), "UTF-8");
-                httpResponse.sendRedirect(httpRequest.getContextPath() + httpRequest.getContextPath() + loginPage + "?" + nextParam + "=" + encodedURL);
+                httpResponse.sendRedirect(httpRequest.getContextPath() + "/.." + loginPage + "?" + nextParam + "=" + encodedURL);
             }
         }
 
