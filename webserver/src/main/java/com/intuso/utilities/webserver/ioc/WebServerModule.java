@@ -6,13 +6,15 @@ import com.google.common.collect.Sets;
 import com.google.common.util.concurrent.Service;
 import com.google.inject.AbstractModule;
 import com.google.inject.Provider;
+import com.google.inject.Scopes;
 import com.google.inject.TypeLiteral;
 import com.google.inject.multibindings.Multibinder;
 import com.google.inject.util.Providers;
 import com.intuso.utilities.webserver.ServerService;
 import com.intuso.utilities.webserver.config.PortConfig;
-import com.intuso.utilities.webserver.filter.security.ioc.SecurityModule;
 import com.intuso.utilities.webserver.oauth.ioc.OAuthApiModule;
+import com.intuso.utilities.webserver.security.SecurityHandler;
+import org.eclipse.jetty.rewrite.handler.Rule;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.ContextHandler;
 
@@ -25,16 +27,12 @@ public class WebServerModule extends AbstractModule {
 
     private final Provider<Set<PortConfig>> configsProvider;
     private final Class<? extends Provider<Set<PortConfig>>> configsProviderClass;
-    private final String loginPage;
-    private final String nextParam;
-    private final Multimap<String, String> unsecuredResources;
+    private final SecurityHandler.Config securityConfig;
 
-    private WebServerModule(Provider<Set<PortConfig>> configsProvider, Class<? extends Provider<Set<PortConfig>>> configsProviderClass, String loginPage, String nextParam, Multimap<String, String> unsecuredResources) {
+    private WebServerModule(Provider<Set<PortConfig>> configsProvider, Class<? extends Provider<Set<PortConfig>>> configsProviderClass, SecurityHandler.Config securityConfig) {
         this.configsProvider = configsProvider;
         this.configsProviderClass = configsProviderClass;
-        this.loginPage = loginPage;
-        this.nextParam = nextParam;
-        this.unsecuredResources = unsecuredResources;
+        this.securityConfig = securityConfig;
     }
 
     @Override
@@ -47,15 +45,18 @@ public class WebServerModule extends AbstractModule {
             bind(new TypeLiteral<Set<PortConfig>>() {}).toProvider(configsProviderClass);
         bind(new TypeLiteral<Set<ConnectorProvider>>() {}).toProvider(ConnectorsProvider.class);
 
-        // make an empty set of context handlers in case none are bound
+        bind(SecurityHandler.class).in(Scopes.SINGLETON);
+
+        // make an empty set of context handlers and rewrite rules in case none are bound
         Multibinder.newSetBinder(binder(), ContextHandler.class);
+        Multibinder.newSetBinder(binder(), Rule.class);
 
         // bind the server itself
         bind(Server.class).toProvider(ServerProvider.class);
         Multibinder.newSetBinder(binder(), Service.class).addBinding().to(ServerService.class);
 
-        // install the security filter
-        install(new SecurityModule(loginPage, nextParam, unsecuredResources));
+        // setup the security filter
+        bind(SecurityHandler.Config.class).toInstance(securityConfig);
 
         // install the oauth api resources
         install(new OAuthApiModule());
@@ -100,7 +101,7 @@ public class WebServerModule extends AbstractModule {
         }
 
         public WebServerModule build() {
-            return new WebServerModule(configsProvider, configsProviderClass, loginPage, nextParam, unsecuredResources);
+            return new WebServerModule(configsProvider, configsProviderClass, new SecurityHandler.Config(loginPage, nextParam, unsecuredResources));
         }
     }
 }
