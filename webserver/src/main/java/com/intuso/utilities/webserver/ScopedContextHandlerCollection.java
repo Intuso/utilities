@@ -15,8 +15,10 @@ import org.eclipse.jetty.util.annotation.ManagedOperation;
 import org.eclipse.jetty.util.log.Log;
 import org.eclipse.jetty.util.log.Logger;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequestWrapper;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.*;
@@ -176,6 +178,19 @@ public class ScopedContextHandlerCollection extends ScopedHandler
         String contextTarget = target.substring(contextPath.length());
         if(handler != null) {
             baseRequest.setAttribute(ScopedContextHandlerCollection.class.getName(), handler);
+            final String finalContextPath = contextPath;
+            final ContextHandler.StaticContext context = new ContextHandler.StaticContext() {
+                @Override
+                public String getContextPath() {
+                    return finalContextPath;
+                }
+            };
+            request = new HttpServletRequestWrapper(request) {
+                @Override
+                public ServletContext getServletContext() {
+                    return context;
+                }
+            };
             if(handler instanceof AbstractHandlerContainer) {
                 ScopedHandler nextScope = ((AbstractHandlerContainer) handler).getChildHandlerByClass(ScopedHandler.class);
                 if (nextScope != null)

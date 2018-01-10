@@ -54,13 +54,11 @@ public class ServerProvider implements Provider<Server> {
         ScopedContextHandlerCollection contexts = new ScopedContextHandlerCollection();
 
         // create the handler for the api requests. Wrap it in a session handler
-        {
-            ServletContextHandler apiHandler = new ServletContextHandler();
-            apiHandler.setContextPath("/api");
-            apiHandler.addServlet(ServletHandler.Default404Servlet.class, "/");
-            apiHandler.addFilter(new FilterHolder(guiceFilter), "/*", EnumSet.allOf(DispatcherType.class));
-            contexts.addHandler(apiHandler);
-        }
+        ServletContextHandler apiHandler = new ServletContextHandler();
+        apiHandler.setContextPath("/api");
+        apiHandler.addServlet(ServletHandler.Default404Servlet.class, "/");
+        apiHandler.addFilter(new FilterHolder(guiceFilter), "/*", EnumSet.allOf(DispatcherType.class));
+        contexts.addHandler(apiHandler);
 
         // add the application's own handlers
         for(ContextHandler handler : handlers)
