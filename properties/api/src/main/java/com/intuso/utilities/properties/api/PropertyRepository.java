@@ -19,7 +19,7 @@ public abstract class PropertyRepository {
     public PropertyRepository(ManagedCollectionFactory managedCollectionFactory, PropertyRepository parent) {
         this.managedCollectionFactory = managedCollectionFactory;
         this.parent = parent;
-        this.listeners = managedCollectionFactory.create();
+        this.listeners = managedCollectionFactory.createSet();
         if(parent != null)
             parent.addListener(new OriginalsListener());
     }
@@ -30,7 +30,7 @@ public abstract class PropertyRepository {
 
     public final ManagedCollection.Registration addListener(String key, PropertyValueChangeListener listener) {
         if(!keyedListeners.containsKey(key))
-            keyedListeners.put(key, managedCollectionFactory.<PropertyValueChangeListener>create());
+            keyedListeners.put(key, managedCollectionFactory.<PropertyValueChangeListener>createSet());
         return keyedListeners.get(key).add(listener);
     }
 

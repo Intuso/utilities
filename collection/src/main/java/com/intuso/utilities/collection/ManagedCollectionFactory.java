@@ -8,5 +8,6 @@ package com.intuso.utilities.collection;
  * To change this template use File | Settings | File Templates.
  */
 public interface ManagedCollectionFactory {
-    <LISTENER> ManagedCollection<LISTENER> create();
+    <LISTENER> ManagedCollection<LISTENER> createList();
+    <LISTENER> ManagedCollection<LISTENER> createSet();
 }

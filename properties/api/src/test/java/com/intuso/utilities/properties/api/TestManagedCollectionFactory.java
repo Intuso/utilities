@@ -3,7 +3,9 @@ package com.intuso.utilities.properties.api;
 import com.intuso.utilities.collection.ManagedCollection;
 import com.intuso.utilities.collection.ManagedCollectionFactory;
 
-import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedList;
 
 /**
  * Created with IntelliJ IDEA.
@@ -13,8 +15,14 @@ import java.util.concurrent.CopyOnWriteArrayList;
  * To change this template use File | Settings | File Templates.
  */
 public class TestManagedCollectionFactory implements ManagedCollectionFactory {
+
     @Override
-    public <LISTENER> ManagedCollection<LISTENER> create() {
-        return new ManagedCollection<LISTENER>(new CopyOnWriteArrayList<LISTENER>());
+    public <LISTENER> ManagedCollection<LISTENER> createSet() {
+        return new ManagedCollection<>(Collections.synchronizedSet(new HashSet<LISTENER>()));
+    }
+
+    @Override
+    public <LISTENER> ManagedCollection<LISTENER> createList() {
+        return new ManagedCollection<>(Collections.synchronizedList(new LinkedList<LISTENER>()));
     }
 }
