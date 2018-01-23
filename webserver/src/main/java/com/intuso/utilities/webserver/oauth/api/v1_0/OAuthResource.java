@@ -160,7 +160,7 @@ public class OAuthResource {
                         System.currentTimeMillis() + TOKEN_LIFETIME); // + 1 day
                 oAuthStore.deleteAuthorisation(authorisation.getCode());
 
-                logger.debug("Swapping authorisation code {} for token {}", authorisation.getCode(), token.getToken());
+                logger.debug("Swapping authorisation code {} for token {}, refresh token {}, expires at {}", authorisation.getCode(), token.getToken(), token.getRefreshToken(), token.getExpiresAt());
 
                 // todo
                 // check the authorization code hasn't expired
@@ -184,19 +184,19 @@ public class OAuthResource {
                 // get the token for the refresh token
                 token = oAuthStore.getTokenForRefreshToken(refreshToken);
                 if(token == null)
-                    return buildBadRequestResponse("Could not find token for refresh token");
+                    return buildBadRequestResponse("Could not find token for refresh token " + refreshToken);
 
                 if(!token.getClient().getId().equals(oauthRequest.getClientId()))
-                    return buildBadRequestResponse("Current client does not match the one in the token");
+                    return buildBadRequestResponse("Current client " + oauthRequest.getClientId() + " does not match the token's client id " + token.getClient().getId());
 
                 String previousToken = token.getToken();
 
                 token.setToken(oauthIssuerImpl.accessToken());
-                token.setRefreshToken(oauthIssuerImpl.refreshToken());
+                token.setRefreshToken(refreshToken);
                 token.setExpiresAt(System.currentTimeMillis() + TOKEN_LIFETIME);
                 oAuthStore.updateToken(token);
 
-                logger.debug("Refreshed token from {} to {}", previousToken, token.getToken());
+                logger.debug("Token {}, refresh token {} refreshed to token {}, new refresh token {}", previousToken, refreshToken, token.getToken(), token.getRefreshToken());
 
                 break;
             default:
